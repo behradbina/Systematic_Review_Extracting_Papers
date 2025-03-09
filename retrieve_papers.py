@@ -1,4 +1,5 @@
 from Bio import Entrez
+import csv
 
 def search_pubmed(query):
     Entrez.email = "behradbina@gmail.com"  
@@ -14,6 +15,16 @@ def fetch_article_details(article_ids):
     handle.close()
     return records
 
+
+def save_to_csv(articles, filename="search_result.csv"):
+    with open(filename, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+
+        writer.writerow(["Title", "Year", "Abstract"])
+
+        for article in articles:
+            writer.writerow([article['title'], article['year'], article['abstract']])
+
 def main():
     search_query = (
         '{"Streptozotocin"[Mesh Terms] OR streptozotocin[Title/Abstract] OR STZ[Title/Abstract]} '
@@ -22,15 +33,23 @@ def main():
     )
 
     article_ids = search_pubmed(search_query)
+    
     if article_ids:
         articles = fetch_article_details(article_ids)
+        article_list = []
         for article in articles['PubmedArticle']:
             title = article['MedlineCitation']['Article']['ArticleTitle']
             abstract = article['MedlineCitation']['Article'].get('Abstract', {}).get('AbstractText', ['No abstract available'])[0]
             year = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate'].get('Year', 'No year available')
-            print(f"Title: {title}")
-            print(f"Year: {year}")
-            print(f"Abstract: {abstract}\n")
+            
+            article_list.append({
+                'title': title,
+                'year': year,
+                'abstract': abstract
+            })
+        
+        save_to_csv(article_list)
+        print(f"Results saved to search_result.csv")
     else:
         print("No articles found.")
 
