@@ -3,7 +3,7 @@ import csv
 
 def search_pubmed(query):
     Entrez.email = "behradbina@gmail.com"  
-    handle = Entrez.esearch(db="pubmed", term=query, retmax=100)
+    handle = Entrez.esearch(db="pubmed", term=query, retmax=600)
     record = Entrez.read(handle)
     handle.close()
     return record["IdList"]
@@ -27,9 +27,7 @@ def save_to_csv(articles, filename="search_result.csv"):
 
 def main():
     search_query = (
-        '{"Streptozotocin"[Mesh Terms] OR streptozotocin[Title/Abstract] OR STZ[Title/Abstract]} '
-        'AND {"Intracerebroventricular Injections"[Mesh Terms] OR intracerebroventricular[Title/Abstract] OR ICV[Title/Abstract]} '
-        'AND {"Rodentia"[Mesh Terms] OR rodent[Title/Abstract] OR mice[Title/Abstract] OR mouse[Title/Abstract] OR "Mus musculus"[Mesh Terms] OR rat[Title/Abstract] OR rats[Title/Abstract]}'
+        '("Streptozotocin"[Mesh Terms] OR streptozotocin[Title/Abstract] OR STZ[Title/Abstract]) AND ("Intracerebroventricular Injections"[Mesh Terms] OR intracerebroventricular[Title/Abstract] OR ICV[Title/Abstract]) AND ("Rodentia"[Mesh Terms] OR rodent[Title/Abstract] OR mice[Title/Abstract] OR mouse[Title/Abstract] OR "Mus musculus"[Mesh Terms] OR rat[Title/Abstract] OR rats[Title/Abstract] OR "Rattus norvegicus"[Mesh Terms] OR "Rattus rattus"[Mesh Terms])'
     )
 
     article_ids = search_pubmed(search_query)
