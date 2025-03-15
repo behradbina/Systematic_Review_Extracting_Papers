@@ -3,7 +3,7 @@ import csv
 
 def search_pubmed(query):
     Entrez.email = "behradbina@gmail.com"  
-    handle = Entrez.esearch(db="pubmed", term=query, retmax=2)
+    handle = Entrez.esearch(db="pubmed", term=query, retmax=600)
     record = Entrez.read(handle)
     handle.close()
     return record["IdList"]
@@ -42,8 +42,12 @@ def main():
             year = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate'].get('Year', 'No year available')
             pmid =  article['MedlineCitation']['PMID']
             journal = article['MedlineCitation']['Article']['Journal']['ISOAbbreviation']
-            doi = "https://doi.org/"+article['MedlineCitation']['Article']['ELocationID'][0]
-            print(doi)
+            doi = ""
+            try:
+                doi = "https://doi.org/"+article['MedlineCitation']['Article']['ELocationID'][0]
+            except:
+                doi = "N/A"
+            
             
             article_list.append({
                 'title': title,
