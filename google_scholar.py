@@ -9,7 +9,7 @@ def search_scholar(query, num_results=100):
         print(i)
         try:
             article = next(search_query)
-            
+            print(article)
             results.append({
                 "title" : article.get("bib").get("title"),
                 "author" : article.get("bib").get("author"),

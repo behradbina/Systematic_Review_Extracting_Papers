@@ -36,12 +36,12 @@ def main():
         articles = fetch_article_details(article_ids)
         article_list = []
         for article in articles['PubmedArticle']:
-            #print(article)
             title = article['MedlineCitation']['Article']['ArticleTitle']
             abstract = article['MedlineCitation']['Article'].get('Abstract', {}).get('AbstractText', ['No abstract available'])[0]
             year = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate'].get('Year', 'No year available')
             pmid =  article['MedlineCitation']['PMID']
             journal = article['MedlineCitation']['Article']['Journal']['ISOAbbreviation']
+            
             doi = ""
             try:
                 doi = "https://doi.org/"+article['MedlineCitation']['Article']['ELocationID'][0]

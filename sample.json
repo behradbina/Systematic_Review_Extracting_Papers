@@ -1,0 +1,161 @@
+{
+    "MedlineCitation": {
+        "OtherAbstract": [],
+        "InvestigatorList": [],
+        "OtherID": [],
+        "KeywordList": [
+            {
+                "Keywords": [
+                    {"Keyword": "Astrocytes", "MajorTopicYN": "N"},
+                    {"Keyword": "Microglia", "MajorTopicYN": "N"},
+                    {"Keyword": "Neurodegeneration", "MajorTopicYN": "N"},
+                    {"Keyword": "Nrf2", "MajorTopicYN": "N"},
+                    {"Keyword": "STZ", "MajorTopicYN": "N"},
+                    {"Keyword": "Vitamin B1", "MajorTopicYN": "N"}
+                ],
+                "Owner": "NOTNLM"
+            }
+        ],
+        "GeneralNote": [],
+        "SpaceFlightMission": [],
+        "CitationSubset": ["IM"],
+        "PMID": {"Value": "40038195", "Version": "1"},
+        "DateRevised": {"Year": "2025", "Month": "03", "Day": "04"},
+        "Article": {
+            "Language": ["eng"],
+            "ArticleDate": [
+                {"Year": "2025", "Month": "03", "Day": "04", "DateType": "Electronic"}
+            ],
+            "ELocationID": [
+                {"Value": "10.1007/s12035-025-04811-x", "EIdType": "doi", "ValidYN": "Y"}
+            ],
+            "Journal": {
+                "ISSN": {"Value": "1559-1182", "IssnType": "Electronic"},
+                "JournalIssue": {
+                    "PubDate": {"Year": "2025", "Month": "Mar", "Day": "04"},
+                    "CitedMedium": "Internet"
+                },
+                "Title": "Molecular neurobiology",
+                "ISOAbbreviation": "Mol Neurobiol"
+            },
+            "ArticleTitle": "Benfotiamine Ameliorates Streptozotocin-Induced Alzheimer's Disease in Rats by Modulating Neuroinflammation, Oxidative Stress, and Microglia.",
+            "Abstract": {
+                "AbstractText": [
+                    "Alzheimer's disease (AD) is the most prevalent cause of dementia, characterized by progressive memory loss and cognitive decline. Recent evidence indicates that inflammation plays a central role in AD pathogenesis, with elevated inflammatory markers and risk genes linked to innate immune functions. Glial cell dysfunction, particularly in astrocytes and microglia, is crucial to the neuroinflammatory process, contributing to oxidative stress, synaptic dysfunction, neuronal death, and impaired neurogenesis. This study aimed to investigate the therapeutic effects of benfotiamine (BFT), a vitamin B1 analogue, on microglial morphology, inflammation, and oxidative stress parameters in a sporadic Alzheimer-like disease model induced by intracerebroventricular injection of streptozotocin (STZ). Supplementation with 150 mg/kg of BFT for 7 days significantly reduced inflammation in the hippocampus and provided protection against oxidative damage in the entorhinal cortex by activating the Nrf-2 pathway and enhancing the expression of antioxidant enzymes such as SOD1 and CAT. These findings suggest that BFT exerts neuroprotective effects in AD, particularly impacting glial cell function and redox homeostasis."
+                ],
+                "CopyrightInformation": "© 2025. The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature."
+            },
+            "AuthorList": [
+                {
+                    "LastName": "A E F Cardinali",
+                    "ForeName": "Camila",
+                    "Initials": "C",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil. camila.cardinali@icb.usp.br."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "Martins",
+                    "ForeName": "Yandara A",
+                    "Initials": "YA",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "C M Moraes",
+                    "ForeName": "Ruan",
+                    "Initials": "R",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        },
+                        {
+                            "Affiliation": "Department of Psychiatry & Behavioral Neurobiology, The University of Alabama at Birmingham, Alabama, USA."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "Costa",
+                    "ForeName": "Andressa P",
+                    "Initials": "AP",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "Torrão",
+                    "ForeName": "Andréa S",
+                    "Initials": "AS",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                }
+            ],
+            "GrantList": [
+                {
+                    "GrantID": "88887.470274/2019-00",
+                    "Agency": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
+                    "Country": ""
+                },
+                {
+                    "GrantID": "88887.470277/2019-00",
+                    "Agency": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
+                    "Country": ""
+                },
+                {
+                    "GrantID": "2017/10801-1",
+                    "Agency": "Fundação de Amparo à Pesquisa do Estado de São Paulo",
+                    "Country": ""
+                }
+            ],
+            "PublicationTypeList": [
+                {"Value": "Journal Article", "UI": "D016428"}
+            ]
+        },
+        "MedlineJournalInfo": {
+            "Country": "United States",
+            "MedlineTA": "Mol Neurobiol",
+            "NlmUniqueID": "8900963",
+            "ISSNLinking": "0893-7648"
+        },
+        "CoiStatement": "Declarations. Conflict of Interest: The authors declare no competing interests."
+    },
+    "PubmedData": {
+        "ReferenceList": [
+            {
+                "Reference": [
+                    {"Citation": "Alzheimer’s Association (2018) 2018 Alzheimer’s Disease fact And Includes a Special of Early Diagnosis. Alzheimer’s & Dementia 14:367–429"},
+                    {"Citation": "Mucke L, Selkoe DJ (2012) Neurotoxicity of Amyloid -Protein: Synaptic and Network Dysfunction. Cold Spring Harb Perspect Med 2:a006338–a006338. https://doi.org/10.1101/cshperspect.a006338", "ArticleIdList": [{"Value": "10.1101/cshperspect.a006338", "IdType": "doi"}, {"Value": "22762015", "IdType": "pubmed"}, {"Value": "3385944", "IdType": "pmc"}]}
+                ]
+            }
+        ],
+        "History": [
+            {"Year": "2024", "Month": "10", "Day": "14", "PubStatus": "received"},
+            {"Year": "2025", "Month": "2", "Day": "25", "PubStatus": "accepted"},
+            {"Year": "2025", "Month": "3", "Day": "5", "Hour": "0", "Minute": "21", "PubStatus": "medline"},
+            {"Year": "2025", "Month": "3", "Day": "5", "Hour": "0", "Minute": "21", "PubStatus": "pubmed"},
+            {"Year": "2025", "Month": "3", "Day": "4", "Hour": "23", "Minute": "17", "PubStatus": "entrez"}
+        ],
+        "PublicationStatus": "aheadofprint",
+        
+        "ArticleIdList": [
+            {"Value": "40038195", "IdType": "pubmed"},
+            {"Value": "10.1007/s12035-025-04811-x", "IdType": "doi"},
+            {"Value": "10.1007/s12035-025-04811-x", "IdType": "pii"}
+        ]
+    }
+}

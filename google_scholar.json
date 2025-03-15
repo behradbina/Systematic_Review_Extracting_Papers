@@ -1,0 +1,21 @@
+{
+    "container_type": "Publication",
+    "source": "PUBLICATION_SEARCH_SNIPPET",
+    "bib": {
+        "title": "Machine learning algorithms-a review",
+        "author": ["B Mahesh"],
+        "pub_year": "2020",
+        "venue": "International Journal of Science and Research …",
+        "abstract": "Here‟s a quick look at some of the commonly used algorithms in machine learning (ML). Supervised Learning is the machine learning task of learning a function."
+    },
+    "filled": False,
+    "gsrank": 1,
+    "pub_url": "https://www.researchgate.net/profile/Batta-Mahesh/publication/344717762_Machine_Learning_Algorithms_-A_Review/links/5f8b2365299bf1b53e2d243a/Machine-Learning-Algorithms-A-Review.pdf?eid=5082902844932096t",
+    "author_id": [""],
+    "url_scholarbib": "/scholar?hl=en&q=info:sR_ChBn63tIJ:scholar.google.com/&output=cite&scirp=0&hl=en",
+    "url_add_sclib": "/citations?hl=en&xsrf=&continue=/scholar%3Fq%3Dmachine%2Blearning%26hl%3Den%26as_sdt%3D0,33&citilm=1&update_op=library_add&info=sR_ChBn63tIJ&ei=RN7VZ97YA5uoieoPksjy2Ag&json=",
+    "num_citations": 3248,
+    "citedby_url": "/scholar?cites=15194857180303073201&as_sdt=5,33&sciodt=0,33&hl=en",
+    "url_related_articles": "/scholar?q=related:sR_ChBn63tIJ:scholar.google.com/&scioq=machine+learning&hl=en&as_sdt=0,33",
+    "eprint_url": "https://www.researchgate.net/profile/Batta-Mahesh/publication/344717762_Machine_Learning_Algorithms_-A_Review/links/5f8b2365299bf1b53e2d243a/Machine-Learning-Algorithms-A-Review.pdf?eid=5082902844932096t"
+}
