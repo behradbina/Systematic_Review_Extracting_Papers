@@ -3,7 +3,7 @@ import csv
 
 def search_pubmed(query):
     Entrez.email = "behradbina@gmail.com"  
-    handle = Entrez.esearch(db="pubmed", term=query, retmax=600)
+    handle = Entrez.esearch(db="pubmed", term=query, retmax=2)
     record = Entrez.read(handle)
     handle.close()
     return record["IdList"]
@@ -20,10 +20,10 @@ def save_to_csv(articles, filename="search_result.csv"):
     with open(filename, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
 
-        writer.writerow(["Title", "Year", "Abstract"])
+        writer.writerow(["Title", "Year", "Abstract", "Pmid", "Journal"])
 
         for article in articles:
-            writer.writerow([article['title'], article['year'], article['abstract']])
+            writer.writerow([article['title'], article['year'], article['abstract'], article['pmid'], article['journal']])
 
 def main():
     search_query = (
@@ -36,14 +36,19 @@ def main():
         articles = fetch_article_details(article_ids)
         article_list = []
         for article in articles['PubmedArticle']:
+            #print(article)
             title = article['MedlineCitation']['Article']['ArticleTitle']
             abstract = article['MedlineCitation']['Article'].get('Abstract', {}).get('AbstractText', ['No abstract available'])[0]
             year = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate'].get('Year', 'No year available')
+            pmid =  article['MedlineCitation']['PMID']
+            journal = article['MedlineCitation']['Article']['Journal']['ISOAbbreviation']
             
             article_list.append({
                 'title': title,
                 'year': year,
-                'abstract': abstract
+                'abstract': abstract,
+                'pmid' : pmid,
+                'journal' : journal
             })
         
         save_to_csv(article_list)
