@@ -20,10 +20,10 @@ def save_to_csv(articles, filename="search_result.csv"):
     with open(filename, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
 
-        writer.writerow(["Title", "Year", "Abstract", "Pmid", "Journal"])
+        writer.writerow(["Title", "Year", "Abstract", "Pmid", "Journal", "Doi"])
 
         for article in articles:
-            writer.writerow([article['title'], article['year'], article['abstract'], article['pmid'], article['journal']])
+            writer.writerow([article['title'], article['year'], article['abstract'], article['pmid'], article['journal'], article['doi']])
 
 def main():
     search_query = (
@@ -42,13 +42,16 @@ def main():
             year = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate'].get('Year', 'No year available')
             pmid =  article['MedlineCitation']['PMID']
             journal = article['MedlineCitation']['Article']['Journal']['ISOAbbreviation']
+            doi = "https://doi.org/"+article['MedlineCitation']['Article']['ELocationID'][0]
+            print(doi)
             
             article_list.append({
                 'title': title,
                 'year': year,
                 'abstract': abstract,
                 'pmid' : pmid,
-                'journal' : journal
+                'journal' : journal,
+                'doi' : doi
             })
         
         save_to_csv(article_list)
