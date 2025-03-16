@@ -160,7 +160,6 @@
     }
 },
 
-
 {
     "MedlineCitation": {
         "OtherAbstract": [],
@@ -169,120 +168,75 @@
         "KeywordList": [
             {
                 "Keywords": [
-                    {"Keyword": "Astrocytes", "MajorTopicYN": "N"},
-                    {"Keyword": "Microglia", "MajorTopicYN": "N"},
-                    {"Keyword": "Neurodegeneration", "MajorTopicYN": "N"},
-                    {"Keyword": "Nrf2", "MajorTopicYN": "N"},
-                    {"Keyword": "STZ", "MajorTopicYN": "N"},
-                    {"Keyword": "Vitamin B1", "MajorTopicYN": "N"}
+                    {"Keyword": "Alzheimer's disease", "MajorTopicYN": "N"},
+                    {"Keyword": "GABA metabolism", "MajorTopicYN": "N"},
+                    {"Keyword": "MAO-B", "MajorTopicYN": "N"},
+                    {"Keyword": "ammonia", "MajorTopicYN": "N"},
+                    {"Keyword": "astrocyte", "MajorTopicYN": "N"},
+                    {"Keyword": "streptozotocin", "MajorTopicYN": "N"}
                 ],
                 "Owner": "NOTNLM"
             }
         ],
         "GeneralNote": [],
         "SpaceFlightMission": [],
-        "CitationSubset": ["IM"],
-        "PMID": {"Value": "40038195", "Version": "1"},
-        "DateRevised": {"Year": "2025", "Month": "03", "Day": "04"},
+        "CitationSubset": [],
+        "PMID": {"Value": "40034350", "Version": "1"},
+        "DateRevised": {"Year": "2025", "Month": "03", "Day": "05"},
         "Article": {
             "Language": ["eng"],
             "ArticleDate": [
-                {"Year": "2025", "Month": "03", "Day": "04", "DateType": "Electronic"}
+                {"Year": "2024", "Month": "10", "Day": "18", "DateType": "Electronic"}
             ],
             "ELocationID": [
-                {"Value": "10.1007/s12035-025-04811-x", "EIdType": "doi", "ValidYN": "Y"}
+                {"Value": "10.1177/25424823241289036", "EIdType": "doi", "ValidYN": "Y"}
             ],
             "Journal": {
-                "ISSN": {"Value": "1559-1182", "IssnType": "Electronic"},
+                "ISSN": {"Value": "2542-4823", "IssnType": "Electronic"},
                 "JournalIssue": {
-                    "PubDate": {"Year": "2025", "Month": "Mar", "Day": "04"},
+                    "Volume": "8",
+                    "Issue": "1",
+                    "PubDate": {"Year": "2024"},
                     "CitedMedium": "Internet"
                 },
-                "Title": "Molecular neurobiology",
-                "ISOAbbreviation": "Mol Neurobiol"
+                "Title": "Journal of Alzheimer's disease reports",
+                "ISOAbbreviation": "J Alzheimers Dis Rep"
             },
-            "ArticleTitle": "Benfotiamine Ameliorates Streptozotocin-Induced Alzheimer's Disease in Rats by Modulating Neuroinflammation, Oxidative Stress, and Microglia.",
+            "ArticleTitle": "Astrocyte dysfunction alters GABAergic communication and ammonia metabolism in the streptozotocin-induced sporadic Alzheimer's disease model.",
+            "Pagination": {"StartPage": "1381", "EndPage": "1393", "MedlinePgn": "1381-1393"},
             "Abstract": {
                 "AbstractText": [
-                    "Alzheimer's disease (AD) is the most prevalent cause of dementia, characterized by progressive memory loss and cognitive decline. Recent evidence indicates that inflammation plays a central role in AD pathogenesis, with elevated inflammatory markers and risk genes linked to innate immune functions. Glial cell dysfunction, particularly in astrocytes and microglia, is crucial to the neuroinflammatory process, contributing to oxidative stress, synaptic dysfunction, neuronal death, and impaired neurogenesis. This study aimed to investigate the therapeutic effects of benfotiamine (BFT), a vitamin B1 analogue, on microglial morphology, inflammation, and oxidative stress parameters in a sporadic Alzheimer-like disease model induced by intracerebroventricular injection of streptozotocin (STZ). Supplementation with 150 mg/kg of BFT for 7 days significantly reduced inflammation in the hippocampus and provided protection against oxidative damage in the entorhinal cortex by activating the Nrf-2 pathway and enhancing the expression of antioxidant enzymes such as SOD1 and CAT. These findings suggest that BFT exerts neuroprotective effects in AD, particularly impacting glial cell function and redox homeostasis."
+                    {"Label": "BACKGROUND", "NlmCategory": "UNASSIGNED", "Value": "In the sporadic model of Alzheimer's disease (AD), induced by intracerebroventricular streptozotocin (STZ) administration, cognitive impairment is accompanied by specific astrocytic changes in the hippocampus prior to amyloid deposition."},
+                    {"Label": "OBJECTIVE", "NlmCategory": "UNASSIGNED", "Value": "Hypothesizing that the synthesis of GABA, via MAO-B, contributes to ammonia elevation, thereby compromising antioxidant defense and ATP synthesis, and possibly contributing to cognitive damage, we determined the hippocampal levels of glutamine synthetase (GS), monoamine oxidase B (MAO-B) and other enzymes related to GABA metabolism."},
+                    {"Label": "METHODS", "NlmCategory": "UNASSIGNED", "Value": "Immunoblotting and RT-PCR assays were carried out in hippocampal samples of Wistar rats, at 4 and 16 weeks post-STZ, in the sporadic STZ-induced AD model, corresponding to the pre-amyloid and amyloid phases, respectively."},
+                    {"Label": "RESULTS", "NlmCategory": "UNASSIGNED", "Value": "We observed a reduction in GS activity and increased MAO-B content, both in 4 weeks and in 16 weeks, reinforcing the idea that astroglial dysfunction precedes the amyloid phase. These alterations were accompanied by an increase in the content of ornithine decarboxylase 1 (ODC1), which catalyzes the synthesis of putrescine (substrate for GABA synthesis, via MAO-B), and a reduction in the gene expression of arginine-glycine amidinotransferase (AGAT), an enzyme involved in the synthesis of creatine, and in the generation of GABA agonists. These changes were only seen in the amyloid phase of the AD model."},
+                    {"Label": "CONCLUSIONS", "NlmCategory": "UNASSIGNED", "Value": "Our findings contribute to explain the greater damage that occurs in energy metabolism at this stage, in addition to the greater GABAergic loss. The changes reinforce the importance of the STZ model and further our understanding of the changes in both AD phases."}
                 ],
-                "CopyrightInformation": "© 2025. The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature."
+                "CopyrightInformation": "© The Author(s) 2024."
             },
             "AuthorList": [
                 {
-                    "LastName": "A E F Cardinali",
-                    "ForeName": "Camila",
-                    "Initials": "C",
+                    "LastName": "Brezolin",
+                    "ForeName": "Éverton Carlos",
+                    "Initials": "ÉC",
                     "AffiliationInfo": [
                         {
-                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil. camila.cardinali@icb.usp.br."
+                            "Affiliation": "Graduate Program in Neuroscience, Institute of Basic Health Sciences, Universidade Federal do Rio Grande do Sul, Porto Alegre, Brazil."
                         }
                     ],
                     "ValidYN": "Y"
                 },
                 {
-                    "LastName": "Martins",
-                    "ForeName": "Yandara A",
-                    "Initials": "YA",
+                    "LastName": "Gayger-Dias",
+                    "ForeName": "Vitor",
+                    "Initials": "V",
+                    "Identifier": [{"Value": "0000-0002-8067-9505", "Source": "ORCID"}],
                     "AffiliationInfo": [
                         {
-                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                            "Affiliation": "Graduate Program in Biochemistry, Institute of Basic Health Sciences, Universidade Federal do Rio Grande do Sul, Porto Alegre, Brazil."
                         }
                     ],
                     "ValidYN": "Y"
-                },
-                {
-                    "LastName": "C M Moraes",
-                    "ForeName": "Ruan",
-                    "Initials": "R",
-                    "AffiliationInfo": [
-                        {
-                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
-                        },
-                        {
-                            "Affiliation": "Department of Psychiatry & Behavioral Neurobiology, The University of Alabama at Birmingham, Alabama, USA."
-                        }
-                    ],
-                    "ValidYN": "Y"
-                },
-                {
-                    "LastName": "Costa",
-                    "ForeName": "Andressa P",
-                    "Initials": "AP",
-                    "AffiliationInfo": [
-                        {
-                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
-                        }
-                    ],
-                    "ValidYN": "Y"
-                },
-                {
-                    "LastName": "Torrão",
-                    "ForeName": "Andréa S",
-                    "Initials": "AS",
-                    "AffiliationInfo": [
-                        {
-                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
-                        }
-                    ],
-                    "ValidYN": "Y"
-                }
-            ],
-            "GrantList": [
-                {
-                    "GrantID": "88887.470274/2019-00",
-                    "Agency": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
-                    "Country": ""
-                },
-                {
-                    "GrantID": "88887.470277/2019-00",
-                    "Agency": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
-                    "Country": ""
-                },
-                {
-                    "GrantID": "2017/10801-1",
-                    "Agency": "Fundação de Amparo à Pesquisa do Estado de São Paulo",
-                    "Country": ""
                 }
             ],
             "PublicationTypeList": [
@@ -290,34 +244,36 @@
             ]
         },
         "MedlineJournalInfo": {
-            "Country": "United States",
-            "MedlineTA": "Mol Neurobiol",
-            "NlmUniqueID": "8900963",
-            "ISSNLinking": "0893-7648"
+            "Country": "Netherlands",
+            "MedlineTA": "J Alzheimers Dis Rep",
+            "NlmUniqueID": "101705500",
+            "ISSNLinking": "2542-4823"
         },
-        "CoiStatement": "Declarations. Conflict of Interest: The authors declare no competing interests."
+        "CoiStatement": "The authors declared no potential conflicts of interest with respect to the research, authorship, and/or publication of this article."
     },
     "PubmedData": {
         "ReferenceList": [
             {
                 "Reference": [
-                    {"Citation": "Alzheimer’s Association (2018) 2018 Alzheimer’s Disease fact And Includes a Special of Early Diagnosis. Alzheimer’s & Dementia 14:367–429"},
-                    {"Citation": "Mucke L, Selkoe DJ (2012) Neurotoxicity of Amyloid -Protein: Synaptic and Network Dysfunction. Cold Spring Harb Perspect Med 2:a006338–a006338. https://doi.org/10.1101/cshperspect.a006338", "ArticleIdList": [{"Value": "10.1101/cshperspect.a006338", "IdType": "doi"}, {"Value": "22762015", "IdType": "pubmed"}, {"Value": "3385944", "IdType": "pmc"}]}
+                    {"Citation": "2023 Alzheimer’s disease facts and figures. Alzheimers Dement 2023; 19: 1598–1695.", "ArticleIdList": [{"Value": "36918389", "IdType": "pubmed"}]},
+                    {"Citation": "Leclerc B, Abulrob A. Perspectives in molecular imaging using staging biomarkers and immunotherapies in Alzheimer’s disease. Sci World J 2013; 2013: 589308.", "ArticleIdList": [{"Value": "PMC3576798", "IdType": "pmc"}, {"Value": "23476143", "IdType": "pubmed"}]}
                 ]
             }
         ],
         "History": [
-            {"Year": "2024", "Month": "10", "Day": "14", "PubStatus": "received"},
-            {"Year": "2025", "Month": "2", "Day": "25", "PubStatus": "accepted"},
-            {"Year": "2025", "Month": "3", "Day": "5", "Hour": "0", "Minute": "21", "PubStatus": "medline"},
-            {"Year": "2025", "Month": "3", "Day": "5", "Hour": "0", "Minute": "21", "PubStatus": "pubmed"},
-            {"Year": "2025", "Month": "3", "Day": "4", "Hour": "23", "Minute": "17", "PubStatus": "entrez"}
+            {"Year": "2024", "Month": "6", "Day": "7", "PubStatus": "received"},
+            {"Year": "2024", "Month": "9", "Day": "4", "PubStatus": "accepted"},
+            {"Year": "2025", "Month": "3", "Day": "4", "Hour": "10", "Minute": "53", "PubStatus": "medline"},
+            {"Year": "2025", "Month": "3", "Day": "4", "Hour": "10", "Minute": "52", "PubStatus": "pubmed"},
+            {"Year": "2025", "Month": "3", "Day": "4", "Hour": "4", "Minute": "47", "PubStatus": "entrez"},
+            {"Year": "2024", "Month": "10", "Day": "18", "PubStatus": "pmc-release"}
         ],
-        "PublicationStatus": "aheadofprint",
+        "PublicationStatus": "epublish",
         "ArticleIdList": [
-            {"Value": "40038195", "IdType": "pubmed"},
-            {"Value": "10.1007/s12035-025-04811-x", "IdType": "doi"},
-            {"Value": "10.1007/s12035-025-04811-x", "IdType": "pii"}
+            {"Value": "40034350", "IdType": "pubmed"},
+            {"Value": "PMC11863748", "IdType": "pmc"},
+            {"Value": "10.1177/25424823241289036", "IdType": "doi"},
+            {"Value": "10.1177_25424823241289036", "IdType": "pii"}
         ]
     }
 }
