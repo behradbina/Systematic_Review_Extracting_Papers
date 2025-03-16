@@ -158,4 +158,394 @@
             {"Value": "10.1007/s12035-025-04811-x", "IdType": "pii"}
         ]
     }
+},
+
+
+{
+    "MedlineCitation": {
+        "OtherAbstract": [],
+        "InvestigatorList": [],
+        "OtherID": [],
+        "KeywordList": [
+            {
+                "Keywords": [
+                    {"Keyword": "Astrocytes", "MajorTopicYN": "N"},
+                    {"Keyword": "Microglia", "MajorTopicYN": "N"},
+                    {"Keyword": "Neurodegeneration", "MajorTopicYN": "N"},
+                    {"Keyword": "Nrf2", "MajorTopicYN": "N"},
+                    {"Keyword": "STZ", "MajorTopicYN": "N"},
+                    {"Keyword": "Vitamin B1", "MajorTopicYN": "N"}
+                ],
+                "Owner": "NOTNLM"
+            }
+        ],
+        "GeneralNote": [],
+        "SpaceFlightMission": [],
+        "CitationSubset": ["IM"],
+        "PMID": {"Value": "40038195", "Version": "1"},
+        "DateRevised": {"Year": "2025", "Month": "03", "Day": "04"},
+        "Article": {
+            "Language": ["eng"],
+            "ArticleDate": [
+                {"Year": "2025", "Month": "03", "Day": "04", "DateType": "Electronic"}
+            ],
+            "ELocationID": [
+                {"Value": "10.1007/s12035-025-04811-x", "EIdType": "doi", "ValidYN": "Y"}
+            ],
+            "Journal": {
+                "ISSN": {"Value": "1559-1182", "IssnType": "Electronic"},
+                "JournalIssue": {
+                    "PubDate": {"Year": "2025", "Month": "Mar", "Day": "04"},
+                    "CitedMedium": "Internet"
+                },
+                "Title": "Molecular neurobiology",
+                "ISOAbbreviation": "Mol Neurobiol"
+            },
+            "ArticleTitle": "Benfotiamine Ameliorates Streptozotocin-Induced Alzheimer's Disease in Rats by Modulating Neuroinflammation, Oxidative Stress, and Microglia.",
+            "Abstract": {
+                "AbstractText": [
+                    "Alzheimer's disease (AD) is the most prevalent cause of dementia, characterized by progressive memory loss and cognitive decline. Recent evidence indicates that inflammation plays a central role in AD pathogenesis, with elevated inflammatory markers and risk genes linked to innate immune functions. Glial cell dysfunction, particularly in astrocytes and microglia, is crucial to the neuroinflammatory process, contributing to oxidative stress, synaptic dysfunction, neuronal death, and impaired neurogenesis. This study aimed to investigate the therapeutic effects of benfotiamine (BFT), a vitamin B1 analogue, on microglial morphology, inflammation, and oxidative stress parameters in a sporadic Alzheimer-like disease model induced by intracerebroventricular injection of streptozotocin (STZ). Supplementation with 150 mg/kg of BFT for 7 days significantly reduced inflammation in the hippocampus and provided protection against oxidative damage in the entorhinal cortex by activating the Nrf-2 pathway and enhancing the expression of antioxidant enzymes such as SOD1 and CAT. These findings suggest that BFT exerts neuroprotective effects in AD, particularly impacting glial cell function and redox homeostasis."
+                ],
+                "CopyrightInformation": "© 2025. The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature."
+            },
+            "AuthorList": [
+                {
+                    "LastName": "A E F Cardinali",
+                    "ForeName": "Camila",
+                    "Initials": "C",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil. camila.cardinali@icb.usp.br."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "Martins",
+                    "ForeName": "Yandara A",
+                    "Initials": "YA",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "C M Moraes",
+                    "ForeName": "Ruan",
+                    "Initials": "R",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        },
+                        {
+                            "Affiliation": "Department of Psychiatry & Behavioral Neurobiology, The University of Alabama at Birmingham, Alabama, USA."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "Costa",
+                    "ForeName": "Andressa P",
+                    "Initials": "AP",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                },
+                {
+                    "LastName": "Torrão",
+                    "ForeName": "Andréa S",
+                    "Initials": "AS",
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Departamento de Fisiologia E Biofisica, Universidade de Sao Paulo, Av Professor Lineu Prestes 2415, Sao Paulo, 05508-000, Brazil."
+                        }
+                    ],
+                    "ValidYN": "Y"
+                }
+            ],
+            "GrantList": [
+                {
+                    "GrantID": "88887.470274/2019-00",
+                    "Agency": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
+                    "Country": ""
+                },
+                {
+                    "GrantID": "88887.470277/2019-00",
+                    "Agency": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
+                    "Country": ""
+                },
+                {
+                    "GrantID": "2017/10801-1",
+                    "Agency": "Fundação de Amparo à Pesquisa do Estado de São Paulo",
+                    "Country": ""
+                }
+            ],
+            "PublicationTypeList": [
+                {"Value": "Journal Article", "UI": "D016428"}
+            ]
+        },
+        "MedlineJournalInfo": {
+            "Country": "United States",
+            "MedlineTA": "Mol Neurobiol",
+            "NlmUniqueID": "8900963",
+            "ISSNLinking": "0893-7648"
+        },
+        "CoiStatement": "Declarations. Conflict of Interest: The authors declare no competing interests."
+    },
+    "PubmedData": {
+        "ReferenceList": [
+            {
+                "Reference": [
+                    {"Citation": "Alzheimer’s Association (2018) 2018 Alzheimer’s Disease fact And Includes a Special of Early Diagnosis. Alzheimer’s & Dementia 14:367–429"},
+                    {"Citation": "Mucke L, Selkoe DJ (2012) Neurotoxicity of Amyloid -Protein: Synaptic and Network Dysfunction. Cold Spring Harb Perspect Med 2:a006338–a006338. https://doi.org/10.1101/cshperspect.a006338", "ArticleIdList": [{"Value": "10.1101/cshperspect.a006338", "IdType": "doi"}, {"Value": "22762015", "IdType": "pubmed"}, {"Value": "3385944", "IdType": "pmc"}]}
+                ]
+            }
+        ],
+        "History": [
+            {"Year": "2024", "Month": "10", "Day": "14", "PubStatus": "received"},
+            {"Year": "2025", "Month": "2", "Day": "25", "PubStatus": "accepted"},
+            {"Year": "2025", "Month": "3", "Day": "5", "Hour": "0", "Minute": "21", "PubStatus": "medline"},
+            {"Year": "2025", "Month": "3", "Day": "5", "Hour": "0", "Minute": "21", "PubStatus": "pubmed"},
+            {"Year": "2025", "Month": "3", "Day": "4", "Hour": "23", "Minute": "17", "PubStatus": "entrez"}
+        ],
+        "PublicationStatus": "aheadofprint",
+        "ArticleIdList": [
+            {"Value": "40038195", "IdType": "pubmed"},
+            {"Value": "10.1007/s12035-025-04811-x", "IdType": "doi"},
+            {"Value": "10.1007/s12035-025-04811-x", "IdType": "pii"}
+        ]
+    }
 }
+
+{
+    "MedlineCitation": {
+        "OtherID": [],
+        "OtherAbstract": [],
+        "GeneralNote": [],
+        "KeywordList": [],
+        "SpaceFlightMission": [],
+        "CitationSubset": [],
+        "InvestigatorList": [],
+        "PMID": {"Value": "40027342", "Version": "1"},
+        "DateRevised": {"Year": "2025", "Month": "03", "Day": "04"},
+        "Article": {
+            "ELocationID": [
+                {"Value": "10.1039/d4md00778f", "EIdType": "doi", "ValidYN": "Y"}
+            ],
+            "Language": ["eng"],
+            "ArticleDate": [
+                {"Year": "2025", "Month": "02", "Day": "13", "DateType": "Electronic"}
+            ],
+            "Journal": {
+                "ISSN": {"Value": "2632-8682", "IssnType": "Electronic"},
+                "JournalIssue": {
+                    "PubDate": {"Year": "2025", "Month": "Feb", "Day": "13"},
+                    "CitedMedium": "Internet"
+                },
+                "Title": "RSC medicinal chemistry",
+                "ISOAbbreviation": "RSC Med Chem"
+            },
+            "ArticleTitle": "Donepezil-based rational design of <i>N</i>-substituted quinazolinthioacetamide candidates as potential acetylcholine esterase inhibitors for the treatment of Alzheimer's disease: <i>in vitro</i> and <i>in vivo</i> studies.",
+            "Abstract": {
+                "AbstractText": [
+                    "Alzheimer's disease (AD) stands as one of the most outstanding progressive neurodegenerative disorders. Obviously, acetylcholine esterase (AChE) is the primary enzyme responsible for breaking down acetylcholine (ACh) with a much more prominent effect than butyrylcholine esterase (BuChE). Hence, novel quinazoline derivatives (3a-p) were designed and synthesized as AChE inhibitors for AD treatment. The newly synthesized quinazoline derivatives (3a-p) were pursued for their inhibitory potential towards both AChE and BuChE. Notably, compound 3e displayed the highest inhibitory potential towards AChE (IC<sub>50</sub> = 9.26 nM) surpassing donepezil (IC<sub>50</sub> = 16.43 nM). On the other side, compound 3e effectively negated the decline in memory acquisition and retention instigated by ICV administration of streptozotocin (STZ) in mice, an effect that was comparable to that produced by donepezil. Moreover, compound 3e, reduced BACE1 by 51.08% (<i>p</i> < 0.0001), Aβ42 by 52.47% (<i>p</i> < 0.0001), and p(Ser199)-tau by 69.16% (<i>p</i> < 0.0001) compared to STZ mice. Such effects were similar to those of donepezil which reduced all 3 parameters by 57.53%, 58.5%, and 66.78%, respectively, compared to STZ mice. Furthermore, molecular docking studies showed that the superimposition view clarified the similar binding mode of both 3e and the co-crystallized donepezil at the AChE binding pocket. Moreover, the docked complexes (3e-AChE and 3e-BuChE) were further subject to molecular dynamics simulations for 100 ns. In addition, eligible pharmacokinetic profiles as well as feasible BBB penetration were anticipated for compound 3e using ADME and BBB permeation prediction studies. Accordingly, the synthesized compounds, in particular compound 3e, can be treated as promising lead compounds for AD treatment with future further optimization."
+                ],
+                "CopyrightInformation": "This journal is © The Royal Society of Chemistry."
+            },
+            "AuthorList": [
+                {
+                    "Identifier": [{"Value": "0000-0002-8173-6073", "Source": "ORCID"}],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Pharmaceutical Chemistry, College of Pharmacy, The University of Mashreq Baghdad 10023 Iraq."
+                        },
+                        {
+                            "Affiliation": "Department of Pharmaceutical Chemistry, Faculty of Pharmacy, Horus University-Egypt New Damietta 34518 Egypt akarmalawy@horus.edu.eg."
+                        }
+                    ],
+                    "LastName": "Al-Karmalawy",
+                    "ForeName": "Ahmed A",
+                    "Initials": "AA",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Pharmacology and Toxicology, Faculty of Pharmacy, Cairo University Cairo Egypt."
+                        },
+                        {
+                            "Affiliation": "Faculty of Pharmacy, King Salman International University (KSIU) South Sinai 46612 Egypt."
+                        }
+                    ],
+                    "LastName": "Mohamed",
+                    "ForeName": "Ahmed F",
+                    "Initials": "AF",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Pharmacology and Toxicology, Faculty of Pharmacy, Cairo University Cairo Egypt."
+                        }
+                    ],
+                    "LastName": "Shalaby",
+                    "ForeName": "Heba Nasr",
+                    "Initials": "HN",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Medicinal Chemistry Department, Faculty of Pharmacy, Port Said University Port Said 42526 Egypt."
+                        },
+                        {
+                            "Affiliation": "Medicinal Chemistry Department, Clinical Pharmacy Program, East Port said National University Port Said 42526 Egypt."
+                        }
+                    ],
+                    "LastName": "Elmaaty",
+                    "ForeName": "Ayman Abo",
+                    "Initials": "AA",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [{"Value": "0000-0002-3179-3352", "Source": "ORCID"}],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Pharmacognosy Department, Faculty of Pharmacy, Cairo University Kasr-El-Ainy Street Cairo 11562 Egypt."
+                        }
+                    ],
+                    "LastName": "El-Shiekh",
+                    "ForeName": "Riham A",
+                    "Initials": "RA",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Pharmaceutical Chemistry, Faculty of Pharmacy, Horus University-Egypt New Damietta 34518 Egypt akarmalawy@horus.edu.eg."
+                        }
+                    ],
+                    "LastName": "Zeidan",
+                    "ForeName": "Mohamed A",
+                    "Initials": "MA",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [{"Value": "0000-0003-1869-9596", "Source": "ORCID"}],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "CADD Unit, Faculty of Pharmacy, Libyan International Medical University Benghazi 16063 Libya."
+                        }
+                    ],
+                    "LastName": "Alnajjar",
+                    "ForeName": "Radwan",
+                    "Initials": "R",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Chemistry, Faculty of Science and Arts, King Khalid University Mohail Assir Saudi Arabia."
+                        }
+                    ],
+                    "LastName": "Alzahrani",
+                    "ForeName": "Abdullah Yahya Abdullah",
+                    "Initials": "AYA",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Pharmaceutical Chemistry, College of Pharmacy, King Khalid University Abha 61421 Saudi Arabia."
+                        }
+                    ],
+                    "LastName": "Al Mughram",
+                    "ForeName": "Mohammed H",
+                    "Initials": "MH",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [{"Value": "0000-0002-0420-4364", "Source": "ORCID"}],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Pharmaceutical Chemistry, Faculty of Pharmacy, Kafrelsheikh University Kafrelsheikh 33516 Egypt."
+                        }
+                    ],
+                    "LastName": "Shaldam",
+                    "ForeName": "Moataz A",
+                    "Initials": "MA",
+                    "ValidYN": "Y"
+                },
+                {
+                    "Identifier": [{"Value": "0000-0001-6455-5716", "Source": "ORCID"}],
+                    "AffiliationInfo": [
+                        {
+                            "Affiliation": "Department of Pharmaceutical Chemistry, Faculty of Pharmacy, Tanta University Tanta 31527 Egypt haytham.omar.mahmoud@pharm.tanta.edu.eg."
+                        }
+                    ],
+                    "LastName": "Tawfik",
+                    "ForeName": "Haytham O",
+                    "Initials": "HO",
+                    "ValidYN": "Y"
+                }
+            ],
+            "PublicationTypeList": [
+                {"Value": "Journal Article", "UI": "D016428"}
+            ]
+        },
+        "MedlineJournalInfo": {
+            "Country": "England",
+            "MedlineTA": "RSC Med Chem",
+            "NlmUniqueID": "101759460",
+            "ISSNLinking": "2632-8682"
+        },
+        "CoiStatement": "The authors declare no competing financial interest."
+    },
+    "PubmedData": {
+        "ReferenceList": [
+            {
+                "Reference": [
+                    {
+                        "Citation": "Feng K.-R. Wang F. Shi X.-W. Tan Y.-X. Zhao J.-Y. Zhang J.-W. Li Q.-H. Lin G.-Q. Gao D. Tian P. Eur. J. Med. Chem. 2020;201:112428.",
+                        "ArticleIdList": [{"Value": "32603980", "IdType": "pubmed"}]
+                    },
+                    {
+                        "Citation": "Ibrahim R. M. El-Shiekh R. A. Mohamed O. G. Al-Karmalawy A. A. Tripathi A. Abdel-Baki P. M. Plant Foods Hum. Nutr. 2024;79:359–366.",
+                        "ArticleIdList": [
+                            {"Value": "PMC11178554", "IdType": "pmc"},
+                            {"Value": "38607508", "IdType": "pubmed"}
+                        ]
+                    }
+                ]
+            }
+        ],
+        "History": [
+            {"Year": "2024", "Month": "10", "Day": "5", "PubStatus": "received"},
+            {"Year": "2025", "Month": "2", "Day": "10", "PubStatus": "accepted"},
+            {"Year": "2025", "Month": "3", "Day": "3", "Hour": "17", "Minute": "12", "PubStatus": "medline"},
+            {"Year": "2025", "Month": "3", "Day": "3", "Hour": "17", "Minute": "12", "PubStatus": "pubmed"},
+            {"Year": "2025", "Month": "3", "Day": "3", "Hour": "6", "Minute": "20", "PubStatus": "entrez"},
+            {"Year": "2025", "Month": "2", "Day": "13", "PubStatus": "pmc-release"}
+        ],
+        "PublicationStatus": "aheadofprint",
+        "ArticleIdList": [
+            {"Value": "40027342", "IdType": "pubmed"},
+            {"Value": "PMC11865952", "IdType": "pmc"},
+            {"Value": "10.1039/d4md00778f", "IdType": "doi"},
+            {"Value": "d4md00778f", "IdType": "pii"}
+        ]
+    }
+}
+
+
