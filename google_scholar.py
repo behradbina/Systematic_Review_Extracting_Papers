@@ -87,10 +87,7 @@ def process_found_articles(have_doi_articles , no_doi_found):
     
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python script.py <search keywords>")
-        sys.exit(1)
-    query = " ".join(sys.argv[1:])
+    query = "Streptozotocin AND streptozotocin AND STZ AND Intracerebroventricular AND intracerebroventricular AND rat"
     
     have_doi_articles , no_doi_found = scraping_articles_google_scholar(query, 2)
     process_found_articles(have_doi_articles , no_doi_found)
