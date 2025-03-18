@@ -1,6 +1,0 @@
-Title,Year,Abstract,Author
-Machine learning algorithms-a review,2020,Here‟sa quick look at some of the commonly used algorithms in machine learning (ML)  Supervised Learning Supervised learning is the machine learning task of learning a function,['B Mahesh']
-Machine learning,2021,MIT presents a concise primer on machine learning—computer programs that learn from  data and the basis of applications like voice recognition and driverless cars. No in-depth,['E Alpaydin']
-Machine learning,2021,"from data is called learning or training. The  machine learning is to find or approximate  ground-truth. In this book, models are sometimes called learners, which are machine learning",['ZH Zhou']
-"Machine learning: Trends, perspectives, and prospects",2015,Machine learning addresses the question of how to build computers that improve  Recent  progress in machine learning has been driven both by the development of new learning,"['MI Jordan', 'TM Mitchell']"
-What is machine learning?,2015,A machine learning algorithm is a computational process that  This training is the “learning”  part of machine learning. The  can practice “lifelong” learning as it processes new data and,"['I El Naqa', 'MJ Murphy']"
