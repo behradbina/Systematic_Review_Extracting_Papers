@@ -3,6 +3,8 @@ import csv
 import requests
 from scholarly import scholarly
 import pandas as pd
+import pybliometrics
+from pybliometrics.scopus import ScopusSearch
 
 class PubmedArticles:
     query = ""
@@ -91,7 +93,7 @@ class GoogleScholar:
         url = "https://api.crossref.org/works"
         params = {"query.title": title, "rows": 1}
         try:
-            response = requests.get(url, params=params, timeout=10)
+            response = requests.get(url, params=params, timeout=15)
             response.raise_for_status()
             data = response.json()
             if data["message"]["items"]:
@@ -164,4 +166,50 @@ class GoogleScholar:
         combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
 
         combined_df.to_csv(self.output_file, index=False)
+class Scopus:
+    
+    def __init__(self, query:str):
+        pybliometrics.scopus.init()
+        self.fetch_articles(query)
+        
+    def extract_year(cover_date):
+        if cover_date and isinstance(cover_date, str):
+            return cover_date.split("-")[0]
+        return ""
+
+    def fetch_articles(self, query:str):
+        
+        s = ScopusSearch(query)
+        results = s.results
+        print(f"Found {len(results)} results.")
+        
+        with open('scopus_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
+            fieldnames = ['Title', 'Year', 'Journal', 'DOI']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            
+            count = 0
+            for item in results:
+                title = getattr(item, 'title', '')
+                year = extract_year(getattr(item, 'coverDate', ''))
+                journal = getattr(item, 'publicationName', '')
+                doi = getattr(item, 'doi', '')
+                
+                if doi:
+                    writer.writerow({
+                        'Title': title,
+                        'Year': year,
+                        'Journal': journal,
+                        'DOI': doi
+                    })
+                    print(f"Saved: {title} with DOI: {doi}")
+                    count += 1
+                
+                if count >= 10:
+                    break
+
+        print("Results saved in scopus_results.csv")
+
+
+
 

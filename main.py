@@ -1,4 +1,4 @@
-from retrieve_papers import PubmedArticles, GoogleScholar
+from retrieve_papers import PubmedArticles, GoogleScholar, Scopus
 
 def main():
     pubmed_search_query = (
@@ -7,11 +7,16 @@ def main():
     
     base_file = "search_result.csv"
     
-    PubmedArticles(query=pubmed_search_query, email="behradbina@gmail.com", retmax=600, output_file_path="search_result.csv")
+    #PubmedArticles(query=pubmed_search_query, email="behradbina@gmail.com", retmax=10000, output_file_path=base_file)
     
-    google_scholar_query = "Streptozotocin AND streptozotocin AND STZ AND Intracerebroventricular AND intracerebroventricular AND rat"
+    #google_scholar_query = "streptozotocin AND STZ AND intracerebroventricular AND (rat OR mice OR mouse)"
     
-    GoogleScholar(query=google_scholar_query, limit=600, base_file=base_file, output_file= 'google_scholar.csv')
+    #GoogleScholar(query=google_scholar_query, limit=5, base_file=base_file, output_file= 'google_scholar.csv')
 
+    scopus_query = "Machine Learning"
+    
+    Scopus(scopus_query)
+
+    
 if __name__ == "__main__":
     main()
