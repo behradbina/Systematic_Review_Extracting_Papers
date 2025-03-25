@@ -211,5 +211,3 @@ class Scopus:
         print("Results saved in scopus_results.csv")
 
 
-
-
