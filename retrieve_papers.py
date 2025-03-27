@@ -248,7 +248,7 @@ class Scopus:
         
         # Combine both sets of articles
         combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
-        
-        # Save the final combined results
+        combined_df['Year'] = pd.to_datetime(combined_df['Year']).dt.year
         combined_df.to_csv(self.filname_csv_data, index=False)
-                
+        
+        
