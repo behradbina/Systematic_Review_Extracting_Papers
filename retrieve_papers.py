@@ -5,7 +5,7 @@ from scholarly import scholarly
 import pandas as pd
 import pybliometrics
 from pybliometrics.scopus import ScopusSearch
-
+import json
 class PubmedArticles:
     query = ""
     email = ""
@@ -166,6 +166,7 @@ class GoogleScholar:
         combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
 
         combined_df.to_csv(self.output_file, index=False)
+
 class Scopus:
     
     def __init__(self, query:str):
@@ -179,35 +180,21 @@ class Scopus:
 
     def fetch_articles(self, query:str):
         
-        s = ScopusSearch(query)
-        results = s.results
-        print(f"Found {len(results)} results.")
-        
-        with open('scopus_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
-            fieldnames = ['Title', 'Year', 'Journal', 'DOI']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            
-            count = 0
-            for item in results:
-                title = getattr(item, 'title', '')
-                year = extract_year(getattr(item, 'coverDate', ''))
-                journal = getattr(item, 'publicationName', '')
-                doi = getattr(item, 'doi', '')
-                
-                if doi:
-                    writer.writerow({
-                        'Title': title,
-                        'Year': year,
-                        'Journal': journal,
-                        'DOI': doi
-                    })
-                    print(f"Saved: {title} with DOI: {doi}")
-                    count += 1
-                
-                if count >= 10:
-                    break
+        s = ScopusSearch(
+            query,
+            download=True,  # Required for full results
+            max_entries=0    # 0 = get all available results
+        )
 
-        print("Results saved in scopus_results.csv")
+        results = [dict(r._asdict()) for r in s.results]
+
+
+        with open("scopus_results.json", "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=4, default=str)  
+
+        print(f"Successfully saved {len(results)} results to scopus_results.json")
+
+
+                
 
 
