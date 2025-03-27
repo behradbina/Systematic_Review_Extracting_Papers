@@ -7,7 +7,7 @@ def main():
     
     base_file = "search_result.csv"
     
-    #PubmedArticles(query=pubmed_search_query, email="behradbina@gmail.com", retmax=10000, output_file_path=base_file)
+    #PubmedArticles(query=pubmed_search_query, email="behradbina@gmail.com", retmax=600, output_file_path=base_file)
     
     #google_scholar_query = "streptozotocin AND STZ AND intracerebroventricular AND (rat OR mice OR mouse)"
     
@@ -15,7 +15,7 @@ def main():
 
     scopus_query = "Machine Learning"
     
-    Scopus(scopus_query)
+    Scopus(query=scopus_query, base_file=base_file)
 
     
 if __name__ == "__main__":

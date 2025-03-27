@@ -59,7 +59,7 @@ class PubmedArticles:
                 
                 doi = ""
                 try:
-                    doi = "https://doi.org/"+article['MedlineCitation']['Article']['ELocationID'][0]
+                    doi = article['MedlineCitation']['Article']['ELocationID'][0]
                 except:
                     doi = "N/A"
                 
@@ -170,12 +170,16 @@ class GoogleScholar:
 class Scopus:
     filname_json_data = "scopus_results.json"
     filname_csv_data = "scopus_results.csv"
-    
-    def __init__(self, query:str):
+    base_file =  ""
+    def __init__(self, query:str, base_file:str):
+        
+        self.base_file = base_file
+        
         #pybliometrics.scopus.init()
         #self.fetch_articles(query)
         
         self.save_in_csv()
+        self.process_found_articles()
         
                 
     def extract_year(cover_date):
@@ -199,7 +203,6 @@ class Scopus:
         with open(self.filname_json_data, 'r', encoding='utf-8') as json_file:
             data = json.load(json_file)  
 
-        # Map JSON fields to desired CSV headers
         field_mapping = {
             'title': 'Title',
             'coverDate': 'Year',
@@ -208,24 +211,44 @@ class Scopus:
             'doi': 'Doi'
         }
 
-        # Fields to extract from JSON (keys of field_mapping)
         json_fields = list(field_mapping.keys())
-        # CSV header names (values of field_mapping)
         csv_headers = list(field_mapping.values())
 
         with open(self.filname_csv_data, 'w', newline='', encoding='utf-8') as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
             writer.writeheader()
             
-            # Write each row
             for item in data:
-                # Extract and map fields
                 row = {field_mapping[field]: item.get(field, '') for field in json_fields}
                 writer.writerow(row)
 
-        
-                
     
+    def process_found_articles(self):
+        # Read the base file containing existing articles (with columns Doi and Title)
+        search_df = pd.read_csv(self.base_file, usecols=['Doi', 'Title'])
+        
+        # Read all found articles from the CSV
+        all_articles = pd.read_csv(self.filname_csv_data)
+        
+        # Split into articles with DOI and without DOI
+        have_doi_articles = all_articles[all_articles['Doi'].notnull()].copy()  # Articles with DOI
+        no_doi_found = all_articles[all_articles['Doi'].isnull()].copy()       # Articles without DOI
+        
+        # Process articles with DOI:
+        # 1. Remove duplicates
+        # 2. Remove articles that already exist in search_df (matched by DOI)
+        have_doi_articles = have_doi_articles.drop_duplicates()
+        have_doi_articles = have_doi_articles[~have_doi_articles['Doi'].isin(search_df['Doi'])]
+        
+        # Process articles without DOI:
+        # 1. Remove duplicates
+        # 2. Remove articles that already exist in search_df (matched by Title)
+        no_doi_found = no_doi_found.drop_duplicates()
+        no_doi_found = no_doi_found[~no_doi_found['Title'].isin(search_df['Title'])]
+        
+        # Combine both sets of articles
+        combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
+        
+        # Save the final combined results
+        combined_df.to_csv(self.filname_csv_data, index=False)
                 
-
-
