@@ -168,11 +168,16 @@ class GoogleScholar:
         combined_df.to_csv(self.output_file, index=False)
 
 class Scopus:
+    filname_json_data = "scopus_results.json"
+    filname_csv_data = "scopus_results.csv"
     
     def __init__(self, query:str):
-        pybliometrics.scopus.init()
-        self.fetch_articles(query)
+        #pybliometrics.scopus.init()
+        #self.fetch_articles(query)
         
+        self.save_in_csv()
+        
+                
     def extract_year(cover_date):
         if cover_date and isinstance(cover_date, str):
             return cover_date.split("-")[0]
@@ -182,19 +187,36 @@ class Scopus:
         
         s = ScopusSearch(
             query,
-            download=True,  # Required for full results
-            max_entries=0    # 0 = get all available results
+            download=True,  
+            max_entries=0 
         )
-
         results = [dict(r._asdict()) for r in s.results]
-
-
         with open("scopus_results.json", "w", encoding="utf-8") as f:
             json.dump(results, f, indent=4, default=str)  
-
         print(f"Successfully saved {len(results)} results to scopus_results.json")
+    
+    def save_in_csv(self):
+        with open(self.filname_json_data, 'r', encoding='utf-8') as json_file:
+            data = json.load(json_file)  # Assuming the JSON is an array of objects
 
+        fields = ['title', 'coverDate', 'description', 'publicationName', 'doi']
 
+        # Write to the CSV file
+        with open(self.filname_csv_data, 'w', newline='', encoding='utf-8') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=fields)
+            
+            # Write the header
+            writer.writeheader()
+            
+            # Write each row
+            for item in data:
+                # Extract only the specified fields
+                row = {field: item.get(field, '') for field in fields}
+                writer.writerow(row)
+
+        
+                
+    
                 
 
 
