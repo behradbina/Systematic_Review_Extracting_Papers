@@ -12,7 +12,7 @@ class PubmedArticles:
     retmax = 0
     output_file_path = ""
     
-    def __init__(self, query, email:str, retmax:int, output_file_path="search_result.csv"):
+    def __init__(self, query, email:str, retmax:int, output_file_path="data/search_result.csv"):
         self.query= query
         self.email = email
         self.retmax = retmax
@@ -73,7 +73,7 @@ class PubmedArticles:
                 })
             
             self.save_to_csv(article_list)
-            print(f"Results saved to search_result.csv")
+            print(f"Results saved to "+ self.output_file_path)
         else:
             print("No articles found.")
 class GoogleScholar:
@@ -168,8 +168,8 @@ class GoogleScholar:
         combined_df.to_csv(self.output_file, index=False)
 
 class Scopus:
-    filname_json_data = "scopus_results.json"
-    filname_csv_data = "scopus_results.csv"
+    filname_json_data = r"data/scopus_results.json"
+    filname_csv_data = r"data/scopus_results.csv"
     base_file =  ""
     def __init__(self, query:str, base_file:str):
         
@@ -195,9 +195,9 @@ class Scopus:
             max_entries=0 
         )
         results = [dict(r._asdict()) for r in s.results]
-        with open("scopus_results.json", "w", encoding="utf-8") as f:
+        with open(self.filname_json_data, "w", encoding="utf-8") as f:
             json.dump(results, f, indent=4, default=str)  
-        print(f"Successfully saved {len(results)} results to scopus_results.json")
+        print(f"Successfully saved {len(results)} results to "+ self.filname_json_data)
     
     def save_in_csv(self):
         with open(self.filname_json_data, 'r', encoding='utf-8') as json_file:
@@ -250,5 +250,4 @@ class Scopus:
         combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
         combined_df['Year'] = pd.to_datetime(combined_df['Year']).dt.year
         combined_df.to_csv(self.filname_csv_data, index=False)
-        
-        
+              
