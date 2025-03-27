@@ -197,21 +197,30 @@ class Scopus:
     
     def save_in_csv(self):
         with open(self.filname_json_data, 'r', encoding='utf-8') as json_file:
-            data = json.load(json_file)  # Assuming the JSON is an array of objects
+            data = json.load(json_file)  
 
-        fields = ['title', 'coverDate', 'description', 'publicationName', 'doi']
+        # Map JSON fields to desired CSV headers
+        field_mapping = {
+            'title': 'Title',
+            'coverDate': 'Year',
+            'description': 'Abstract',
+            'publicationName': 'Journal',
+            'doi': 'Doi'
+        }
 
-        # Write to the CSV file
+        # Fields to extract from JSON (keys of field_mapping)
+        json_fields = list(field_mapping.keys())
+        # CSV header names (values of field_mapping)
+        csv_headers = list(field_mapping.values())
+
         with open(self.filname_csv_data, 'w', newline='', encoding='utf-8') as csv_file:
-            writer = csv.DictWriter(csv_file, fieldnames=fields)
-            
-            # Write the header
+            writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
             writer.writeheader()
             
             # Write each row
             for item in data:
-                # Extract only the specified fields
-                row = {field: item.get(field, '') for field in fields}
+                # Extract and map fields
+                row = {field_mapping[field]: item.get(field, '') for field in json_fields}
                 writer.writerow(row)
 
         
