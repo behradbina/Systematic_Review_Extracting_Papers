@@ -1,11 +1,12 @@
-from Bio import Entrez
 import csv
 import requests
-from scholarly import scholarly
 import pandas as pd
+import json
+
+from Bio import Entrez
+from scholarly import scholarly
 import pybliometrics
 from pybliometrics.scopus import ScopusSearch
-import json
 class PubmedArticles:
     query = ""
     email = ""
@@ -250,4 +251,93 @@ class Scopus:
         combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
         combined_df['Year'] = pd.to_datetime(combined_df['Year']).dt.year
         combined_df.to_csv(self.filname_csv_data, index=False)
-              
+                       
+class ScienceDirect:
+    filname_json_data = r"data/siencedirect_results.json"
+    filname_csv_data = r"data/siencedirect_results.csv"
+    api_key = '588faa67d0306c6d3aaa6a84fb93b5bf'
+    base_file =  ""
+    
+    def __init__(self, query:str, base_file:str):
+        
+        self.base_file = base_file
+        articles = self.get_all_articles(query)
+        self.save_articles_to_csv(articles=articles)
+
+    def search_sciencedirect(self, query, start=0, count=25):
+        """
+        Searches ScienceDirect for articles matching the query.
+        
+        Parameters:
+            query (str): The search query.
+            api_key (str): Your Elsevier API key.
+            start (int): The starting index for the results.
+            count (int): The number of results to retrieve per request.
+        
+        Returns:
+            dict: The JSON response from the API.
+        """
+        
+        url = "https://api.elsevier.com/content/search/sciencedirect"
+        headers = {
+            "X-ELS-APIKey": self.api_key,
+            "Accept": "application/json"
+        }
+        params = {
+            "query": query,
+            "start": start,
+            "count": count
+        }
+        response = requests.get(url, headers=headers, params=params)
+        
+        if response.status_code != 200:
+            print("Error:", response.status_code, response.text)
+            return None
+        
+        return response.json()
+
+    def get_all_articles(self, query):
+        """
+        Retrieves all articles information from ScienceDirect that match the search query.
+        
+        Parameters:
+            query (str): The search query.
+            api_key (str): Your Elsevier API key.
+        
+        Returns:
+            list: A list of article entries.
+        """
+        articles = []
+        start = 0
+        count = 25  # page size; adjust if necessary
+
+        while True:
+            data = self.search_sciencedirect(query, start=start, count=count)
+            if data is None:
+                break
+            
+            entries = data.get('search-results', {}).get('entry', [])
+            if not entries:
+                break
+            
+            articles.extend(entries)
+            
+            # If fewer entries are returned than requested, assume it's the last page.
+            if len(entries) < count:
+                break
+            start += count
+
+        return articles
+
+    def save_articles_to_csv(self, articles):
+        fieldnames = ["Title", "DOI", "Publication"]
+        
+        with open(self.filname_csv_data, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for article in articles:
+                writer.writerow({
+                    "Title": article.get("dc:title", "N/A"),
+                    "DOI": article.get("prism:doi", "N/A"),
+                    "Publication": article.get("prism:publicationName", "N/A")
+                })
