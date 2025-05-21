@@ -251,11 +251,11 @@ class Scopus:
         combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
         combined_df['Year'] = pd.to_datetime(combined_df['Year']).dt.year
         combined_df.to_csv(self.filname_csv_data, index=False)
-                       
+
 class ScienceDirect:
     filname_json_data = r"data/siencedirect_results.json"
     filname_csv_data = r"data/siencedirect_results.csv"
-    api_key = '588faa67d0306c6d3aaa6a84fb93b5bf'
+    api_key = '75ecad9636d0bc96d40ed6a5518e7e44'
     base_file =  ""
     
     def __init__(self, query:str, base_file:str):
@@ -341,3 +341,4 @@ class ScienceDirect:
                     "DOI": article.get("prism:doi", "N/A"),
                     "Publication": article.get("prism:publicationName", "N/A")
                 })
+                

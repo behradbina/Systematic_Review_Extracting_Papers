@@ -11,7 +11,7 @@ def main():
     #google_scholar_query = "streptozotocin AND STZ AND intracerebroventricular AND (rat OR mice OR mouse)"   
     #GoogleScholar(query=google_scholar_query, limit=5, base_file=base_file, output_file= 'google_scholar.csv')
 
-    scopus_query = r'TITLE-ABS-KEY("Streptozotocin" OR "Streptozocin" OR streptozotocin OR stz) AND TITLE-ABS-KEY("Intracerebroventricular Injections" OR intracerebroventricular OR icv) AND TITLE-ABS-KEY(rodent OR mice OR mouse OR "Mus musculus" OR rat OR rats OR "Rattus norvegicus" OR "Rattus rattus") AND PUBYEAR > 2014 AND PUBYEAR < 2026'
+    scopus_query = r'(TITLE-ABS-KEY("Streptozotocin" OR "Streptozocin" OR streptozotocin OR stz))'
     #Scopus(query=scopus_query, base_file=base_file)
     
     ScienceDirect_query = scopus_query    
