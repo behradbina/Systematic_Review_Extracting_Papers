@@ -2,11 +2,20 @@ import csv
 import requests
 import pandas as pd
 import json
+import os
 
 from Bio import Entrez
 from scholarly import scholarly
 import pybliometrics
 from pybliometrics.scopus import ScopusSearch
+
+from tqdm import tqdm
+import requests
+from pyunpaywall import Unpaywall
+import time
+
+#!pip install requests pandas tqdm pyunpaywall
+
 class PubmedArticles:
     query = ""
     email = ""
@@ -77,6 +86,119 @@ class PubmedArticles:
             print(f"Results saved to "+ self.output_file_path)
         else:
             print("No articles found.")
+
+    def download_pdf(self, url, filename, headers=None):
+        """Generic PDF downloader with error handling"""
+        if headers is None:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            }
+        
+        try:
+            response = requests.get(url, headers=headers, stream=True, timeout=30)
+            if response.status_code == 200:
+                # Check if content is actually PDF
+                content_type = response.headers.get('content-type', '').lower()
+                if 'pdf' in content_type or 'octet-stream' in content_type:
+                    with open(filename, 'wb') as f:
+                        for chunk in response.iter_content(1024):
+                            f.write(chunk)
+                    return True
+            return False
+        except Exception as e:
+            print(f"Error downloading {url}: {str(e)}")
+            return False
+
+    def try_legal_sources(self, row):
+        """Attempt to download from various legal sources"""
+        pmid = str(row['Pmid'])
+        doi = str(row['Doi']) if pd.notna(row['Doi']) else None
+        title = row['Title']
+        journal = row['Journal']
+        
+        filename = f"downloaded_pdfs/{pmid}_{journal.replace(' ', '_')[:20]}.pdf"
+        
+        # 1. Try PubMed Central (if available)
+        if pd.notna(doi):
+            # Check if DOI is from PMC
+            pmc_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/doi/{doi}/pdf/"
+            if self.download_pdf(pmc_url, filename):
+                return True, "PubMed Central"
+        
+        if doi:
+            try:
+                upw = Unpaywall(doi=doi, is_oa_only=True)
+                if upw.is_oa and upw.best_oa_location:
+                    pdf_url = upw.best_oa_location['url_for_pdf'] or upw.best_oa_location['url']
+                    if self.download_pdf(pdf_url, filename):
+                        return True, "Unpaywall"
+            except:
+                pass
+        
+        # 3. Try DOI.org redirect
+        if doi:
+            try:
+                doi_url = f"https://doi.org/{doi}"
+                response = requests.get(doi_url, allow_redirects=True, timeout=10)
+                final_url = response.url
+                if final_url != doi_url and 'pdf' in final_url.lower():
+                    if self.download_pdf(final_url, filename):
+                        return True, "Publisher Site"
+            except:
+                pass
+        
+        # 4. Try direct journal links (example for common journals)
+        if pd.notna(journal):
+            journal_lower = journal.lower()
+            if 'plos' in journal_lower and doi:
+                plos_url = f"https://journals.plos.org/plosone/article/file?id={doi}&type=printable"
+                if self.download_pdf(plos_url, filename):
+                    return True, "PLOS"
+            elif 'nature' in journal_lower and doi:
+                nature_url = f"https://www.nature.com/articles/{doi}.pdf"
+                if self.download_pdf(nature_url, filename, headers={'Accept': 'application/pdf'}):
+                    return True, "Nature"
+        
+        return False, "Not found"
+
+
+    def retrieve_full_text(self):
+        
+        df = pd.read_csv("search_result.csv")
+        # Create directories for PDFs
+        os.makedirs("downloaded_pdfs", exist_ok=True)
+        os.makedirs("failed_downloads", exist_ok=True)
+        
+        # Process all papers
+        results = []
+        success_count = 0
+
+        for _, row in tqdm(df.iterrows(), total=len(df)):
+            success, source = self.try_legal_sources(row)
+            results.append({
+                'PMID': row['Pmid'],
+                'Title': row['Title'],
+                'DOI': row['Doi'],
+                'Journal': row['Journal'],
+                'Downloaded': success,
+                'Source': source
+            })
+            if success:
+                success_count += 1
+            time.sleep(1)  # Be polite to servers :))))
+
+        # Save download report
+        report_df = pd.DataFrame(results)
+        report_df.to_csv("download_report.csv", index=False)
+
+        print(f"\nDownload summary:")
+        print(f"Successfully downloaded: {success_count}/{len(df)} papers")
+        print(f"Download rate: {success_count/len(df)*100:.1f}%")
+        print("Detailed report saved to download_report.csv")
+        
+
+
+
 class GoogleScholar:
     base_file = ""
     output_file = ""
