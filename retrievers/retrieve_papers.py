@@ -136,10 +136,10 @@ class PubmedArticles:
                         return True, "Publisher PDF"
                 
                 # Some sites have PDF links on their page
-                if 'sciencedirect' in final_url:
-                    pdf_url = final_url.replace('/science/article/', '/science/article/pii/') + '/pdfft'
-                    if self.download_pdf(pdf_url, filename):
-                        return True, "ScienceDirect"
+                    if 'sciencedirect' in final_url:
+                        pdf_url = final_url.replace('/science/article/', '/science/article/pii/') + '/pdfft'
+                        if self.download_pdf(pdf_url, filename):
+                            return True, "ScienceDirect"
                 
                 elif 'springer' in final_url:
                     pdf_url = final_url.replace('/article/', '/content/pdf/') + '.pdf'
@@ -223,9 +223,6 @@ class PubmedArticles:
 
 
         
-
-
-
 class GoogleScholar:
     base_file = ""
     output_file = ""
