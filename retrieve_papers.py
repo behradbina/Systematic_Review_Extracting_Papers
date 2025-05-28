@@ -5,16 +5,16 @@ import json
 import os
 
 from Bio import Entrez
-from scholarly import scholarly
+#from scholarly import scholarly
 import pybliometrics
 from pybliometrics.scopus import ScopusSearch
 
 from tqdm import tqdm
 import requests
-from pyunpaywall import Unpaywall
+
 import time
 
-#!pip install requests pandas tqdm pyunpaywall
+#!pip install requests tqdm pyunpaywall
 
 class PubmedArticles:
     query = ""
@@ -28,8 +28,9 @@ class PubmedArticles:
         self.retmax = retmax
         self.output_file_path = output_file_path
         
-        article_ids = self.search_pubmed()
-        self.fetch_data(article_ids)
+        #article_ids = self.search_pubmed()
+        #self.fetch_data(article_ids)
+        self.retrieve_full_text()
 
 
     def search_pubmed(self):
@@ -87,12 +88,11 @@ class PubmedArticles:
         else:
             print("No articles found.")
 
-    def download_pdf(self, url, filename, headers=None):
+    def download_pdf(self,url, filename):
         """Generic PDF downloader with error handling"""
-        if headers is None:
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-            }
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
         
         try:
             response = requests.get(url, headers=headers, stream=True, timeout=30)
@@ -109,62 +109,84 @@ class PubmedArticles:
             print(f"Error downloading {url}: {str(e)}")
             return False
 
-    def try_legal_sources(self, row):
+    def try_legal_sources(self,row):
         """Attempt to download from various legal sources"""
         pmid = str(row['Pmid'])
         doi = str(row['Doi']) if pd.notna(row['Doi']) else None
         title = row['Title']
         journal = row['Journal']
         
-        filename = f"downloaded_pdfs/{pmid}_{journal.replace(' ', '_')[:20]}.pdf"
+        # Create a safe filename
+        safe_title = "".join(c if c.isalnum() else "_" for c in title)[:50]
+        filename = f"downloaded_pdfs/{pmid}_{safe_title}.pdf"
         
         # 1. Try PubMed Central (if available)
         if pd.notna(doi):
-            # Check if DOI is from PMC
-            pmc_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/doi/{doi}/pdf/"
-            if self.download_pdf(pmc_url, filename):
-                return True, "PubMed Central"
+            # PMC URL pattern 1
+            pmc_url1 = f"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC{pmid}/pdf/"
+            # PMC URL pattern 2 (for DOIs)
+            pmc_url2 = f"https://www.ncbi.nlm.nih.gov/pmc/articles/doi/{doi}/pdf/"
+            
+            for url in [pmc_url1, pmc_url2]:
+                if self.download_pdf(url, filename):
+                    return True, "PubMed Central"
         
+        # 2. Try direct DOI resolution
         if doi:
             try:
-                upw = Unpaywall(doi=doi, is_oa_only=True)
-                if upw.is_oa and upw.best_oa_location:
-                    pdf_url = upw.best_oa_location['url_for_pdf'] or upw.best_oa_location['url']
-                    if self.download_pdf(pdf_url, filename):
-                        return True, "Unpaywall"
-            except:
-                pass
-        
-        # 3. Try DOI.org redirect
-        if doi:
-            try:
+                # First get the final URL from DOI.org
                 doi_url = f"https://doi.org/{doi}"
                 response = requests.get(doi_url, allow_redirects=True, timeout=10)
                 final_url = response.url
-                if final_url != doi_url and 'pdf' in final_url.lower():
+                
+                # Check if the final URL looks like a PDF
+                if final_url.lower().endswith('.pdf'):
                     if self.download_pdf(final_url, filename):
-                        return True, "Publisher Site"
-            except:
-                pass
+                        return True, "Publisher PDF"
+                
+                # Some sites have PDF links on their page
+                if 'sciencedirect' in final_url:
+                    pdf_url = final_url.replace('/science/article/', '/science/article/pii/') + '/pdfft'
+                    if self.download_pdf(pdf_url, filename):
+                        return True, "ScienceDirect"
+                
+                elif 'springer' in final_url:
+                    pdf_url = final_url.replace('/article/', '/content/pdf/') + '.pdf'
+                    if self.download_pdf(pdf_url, filename):
+                        return True, "Springer"
+                        
+            except Exception as e:
+                print(f"Error processing DOI {doi}: {str(e)}")
         
-        # 4. Try direct journal links (example for common journals)
+        # 3. Try journal-specific patterns
         if pd.notna(journal):
             journal_lower = journal.lower()
+            
+            # PLOS journals
             if 'plos' in journal_lower and doi:
                 plos_url = f"https://journals.plos.org/plosone/article/file?id={doi}&type=printable"
                 if self.download_pdf(plos_url, filename):
                     return True, "PLOS"
+            
+            # Nature journals
             elif 'nature' in journal_lower and doi:
                 nature_url = f"https://www.nature.com/articles/{doi}.pdf"
-                if self.download_pdf(nature_url, filename, headers={'Accept': 'application/pdf'}):
+                if self.download_pdf(nature_url, filename):
                     return True, "Nature"
+            
+            # ScienceDirect journals
+            elif 'elsevier' in journal_lower and doi:
+                sciencedirect_url = f"https://www.sciencedirect.com/science/article/pii/{doi}/pdfft"
+                if self.download_pdf(sciencedirect_url, filename):
+                    return True, "Elsevier"
         
         return False, "Not found"
 
 
+
     def retrieve_full_text(self):
         
-        df = pd.read_csv("search_result.csv")
+        df = pd.read_csv(self.output_file_path)
         # Create directories for PDFs
         os.makedirs("downloaded_pdfs", exist_ok=True)
         os.makedirs("failed_downloads", exist_ok=True)
@@ -185,9 +207,8 @@ class PubmedArticles:
             })
             if success:
                 success_count += 1
-            time.sleep(1)  # Be polite to servers :))))
+            time.sleep(1)  # Respectful delay between requests
 
-        # Save download report
         report_df = pd.DataFrame(results)
         report_df.to_csv("download_report.csv", index=False)
 
@@ -195,6 +216,21 @@ class PubmedArticles:
         print(f"Successfully downloaded: {success_count}/{len(df)} papers")
         print(f"Download rate: {success_count/len(df)*100:.1f}%")
         print("Detailed report saved to download_report.csv")
+
+        # Generate list of failed downloads for manual processing
+        failed_df = report_df[report_df['Downloaded'] == False]
+        if not failed_df.empty:
+            failed_df.to_csv("failed_downloads/failed_papers.csv", index=False)
+            print(f"\nCould not download {len(failed_df)} papers.")
+            print("You can try these methods for the remaining papers:")
+            print("1. Check if your institution has access via their library portal")
+            print("2. Search for the paper title on Google Scholar and look for [PDF] links")
+            print("3. Use the 'Request PDF' option on ResearchGate")
+            print("4. Email the authors directly (most will gladly share their work)")
+        else:
+            print("\nSuccessfully downloaded all papers!")
+
+
         
 
 
@@ -347,29 +383,18 @@ class Scopus:
 
     
     def process_found_articles(self):
-        # Read the base file containing existing articles (with columns Doi and Title)
         search_df = pd.read_csv(self.base_file, usecols=['Doi', 'Title'])
         
-        # Read all found articles from the CSV
         all_articles = pd.read_csv(self.filname_csv_data)
         
-        # Split into articles with DOI and without DOI
         have_doi_articles = all_articles[all_articles['Doi'].notnull()].copy()  # Articles with DOI
         no_doi_found = all_articles[all_articles['Doi'].isnull()].copy()       # Articles without DOI
         
-        # Process articles with DOI:
-        # 1. Remove duplicates
-        # 2. Remove articles that already exist in search_df (matched by DOI)
         have_doi_articles = have_doi_articles.drop_duplicates()
         have_doi_articles = have_doi_articles[~have_doi_articles['Doi'].isin(search_df['Doi'])]
-        
-        # Process articles without DOI:
-        # 1. Remove duplicates
-        # 2. Remove articles that already exist in search_df (matched by Title)
         no_doi_found = no_doi_found.drop_duplicates()
         no_doi_found = no_doi_found[~no_doi_found['Title'].isin(search_df['Title'])]
         
-        # Combine both sets of articles
         combined_df = pd.concat([have_doi_articles, no_doi_found], ignore_index=True)
         combined_df['Year'] = pd.to_datetime(combined_df['Year']).dt.year
         combined_df.to_csv(self.filname_csv_data, index=False)
