@@ -1,17 +1,12 @@
+from Bio import Entrez
 import csv
-import requests
-import pandas as pd
 import json
 import os
-
-from Bio import Entrez
-#from scholarly import scholarly
+import pandas as pd
 import pybliometrics
 from pybliometrics.scopus import ScopusSearch
-
-from tqdm import tqdm
 import requests
-
+from tqdm import tqdm
 import time
 
 class PubmedArticles:
