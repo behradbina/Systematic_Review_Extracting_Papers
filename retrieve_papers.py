@@ -14,8 +14,6 @@ import requests
 
 import time
 
-#!pip install requests tqdm pyunpaywall
-
 class PubmedArticles:
     query = ""
     email = ""
@@ -31,7 +29,6 @@ class PubmedArticles:
         #article_ids = self.search_pubmed()
         #self.fetch_data(article_ids)
         self.retrieve_full_text()
-
 
     def search_pubmed(self):
         Entrez.email = self.email 
@@ -122,7 +119,6 @@ class PubmedArticles:
         
         # 1. Try PubMed Central (if available)
         if pd.notna(doi):
-            # PMC URL pattern 1
             pmc_url1 = f"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC{pmid}/pdf/"
             # PMC URL pattern 2 (for DOIs)
             pmc_url2 = f"https://www.ncbi.nlm.nih.gov/pmc/articles/doi/{doi}/pdf/"
