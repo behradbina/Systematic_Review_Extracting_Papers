@@ -25,10 +25,10 @@ def get_pmc_id(pmid: str)->str:
 
 def save_pmc_url(pmid:str, pmc_id:str):
     """Download PDF from PubMed Central by finding the real PDF URL"""
-    base_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC{pmc_id}/pdf"
+    base_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmc_id}/pdf"
     
     with open(FILE_PATH, "a") as f:
-        f.write(pmid + ":" + base_url) 
+        f.write(pmid + ":" + base_url+"\n") 
 
 def process_paper(row) -> None:
     pmid = str(row['PMID']).strip()
@@ -41,7 +41,7 @@ def process_paper(row) -> None:
         
         if pmc_id:
             save_pmc_url(pmid, pmc_id)
-            print(f"✅ :" + pmid)
+            print(f"✅ :" + pmid +":"+pmc_id)
 
         else:
             print(f"❌ No accessible PMCID found for " + pmid)
