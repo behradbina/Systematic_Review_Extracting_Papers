@@ -34,39 +34,41 @@ def get_pmc_id(pmid):
 
 def download_pmc_pdf(pmc_id):
     """Download PDF from PubMed Central by finding the real PDF URL"""
-    base_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC{pmc_id}/"
+    base_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC{pmc_id}/pdf"
     pdf_page_url = f"{base_url}pdf/"
     
-    try:
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
+    
+    
+    # try:
+    #     headers = {
+    #         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    #     }
         
-        # First get the PDF page that contains the redirect
-        session = requests.Session()
-        response = session.get(pdf_page_url, headers=headers, timeout=30)
+    #     # First get the PDF page that contains the redirect
+    #     session = requests.Session()
+    #     response = session.get(pdf_page_url, headers=headers, timeout=30)
         
-        if response.status_code == 200:
-            # Parse the HTML to find the PDF URL
-            soup = BeautifulSoup(response.text, 'html.parser')
-            pdf_link = soup.find('iframe', {'id': 'pdf'})
+    #     if response.status_code == 200:
+    #         # Parse the HTML to find the PDF URL
+    #         soup = BeautifulSoup(response.text, 'html.parser')
+    #         pdf_link = soup.find('iframe', {'id': 'pdf'})
             
-            if pdf_link and pdf_link.get('src'):
-                pdf_url = pdf_link['src']
-                if not pdf_url.startswith('http'):
-                    pdf_url = urljoin(base_url, pdf_url)
+    #         if pdf_link and pdf_link.get('src'):
+    #             pdf_url = pdf_link['src']
+    #             if not pdf_url.startswith('http'):
+    #                 pdf_url = urljoin(base_url, pdf_url)
                 
-                # Now download the actual PDF
-                pdf_response = session.get(pdf_url, headers=headers, stream=True, timeout=30)
-                if pdf_response.status_code == 200 and 'pdf' in pdf_response.headers.get('Content-Type', '').lower():
-                    return pdf_response.content
+    #             # Now download the actual PDF
+    #             pdf_response = session.get(pdf_url, headers=headers, stream=True, timeout=30)
+    #             if pdf_response.status_code == 200 and 'pdf' in pdf_response.headers.get('Content-Type', '').lower():
+    #                 return pdf_response.content
         
-        print(f"Failed to find PDF for PMC{pmc_id}")
-        return None
+    #     print(f"Failed to find PDF for PMC{pmc_id}")
+    #     return None
         
-    except Exception as e:
-        print(f"Error downloading PMC{pmc_id}: {str(e)}")
-        return None
+    # except Exception as e:
+    #     print(f"Error downloading PMC{pmc_id}: {str(e)}")
+    #     return None
     
 def get_unpaywall_pdf_url(doi):
     """Get PDF URL from Unpaywall API"""
