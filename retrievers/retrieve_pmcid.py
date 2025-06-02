@@ -25,7 +25,7 @@ def get_pmc_id(pmid: str)->str:
 
 def save_pmc_url(pmid:str, pmc_id:str):
     """Download PDF from PubMed Central by finding the real PDF URL"""
-    base_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmc_id}/pdf"
+    base_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmc_id}/pdf/"
     
     with open(FILE_PATH, "a") as f:
         f.write(pmid + ":" + base_url+"\n") 
