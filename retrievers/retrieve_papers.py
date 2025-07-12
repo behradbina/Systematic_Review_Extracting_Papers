@@ -478,17 +478,16 @@ class ScienceDirect:
                 })
                 
 class MainSienceDirect():
-    def __init__(self, ris_file:str, base_file:str, csv_path:str):
-        
+    def __init__(self, ris_file:str, base_file:str, csv_path:str):      
         self.base_file = base_file
         self.parse_ris_to_csv(ris_path=ris_file, csv_path=csv_path)
         
-
     def parse_ris_to_csv(self, ris_path, csv_path):
         entries = []
         current_entry = {}
+        current_tag = None
+        abstract_lines = []
 
-        # Mapping RIS tags to human-readable CSV headers
         tag_to_header = {
             "T1": "Title",
             "AB": "Abstract",
@@ -500,23 +499,46 @@ class MainSienceDirect():
 
         with open(ris_path, 'r', encoding='utf-8') as f:
             for line in f:
-                if line.strip() == "":
+                line = line.rstrip()
+
+                if not line:
                     continue
 
                 if line.startswith("ER  -"):
+                    if abstract_lines:
+                        current_entry["Abstract"] = " ".join(abstract_lines).strip()
+                        abstract_lines = []
                     if current_entry:
                         entries.append(current_entry)
                         current_entry = {}
+                    current_tag = None
                     continue
 
                 if "  - " in line:
                     tag, value = line.split("  - ", 1)
                     tag = tag.strip()
                     value = value.strip()
-                    if tag in tag_to_header:
-                        current_entry[tag_to_header[tag]] = value
 
-        
+                    if tag == "AB":
+                        abstract_lines = [value]
+                        current_tag = "AB"
+                    elif tag in tag_to_header:
+                        if abstract_lines:
+                            current_entry["Abstract"] = " ".join(abstract_lines).strip()
+                            abstract_lines = []
+                        current_entry[tag_to_header[tag]] = value
+                        current_tag = tag
+                    else:
+                        if abstract_lines:
+                            current_entry["Abstract"] = " ".join(abstract_lines).strip()
+                            abstract_lines = []
+                        current_tag = None
+                else:
+                    # Line continuation
+                    if current_tag == "AB":
+                        abstract_lines.append(line.strip())
+
+        # Write CSV
         headers = ["Title", "Abstract", "Journal", "DOI", "Date", "URL"]
 
         with open(csv_path, "w", newline='', encoding='utf-8') as f:
