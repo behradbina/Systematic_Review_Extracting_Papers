@@ -1,4 +1,4 @@
-from retrieve_papers import PubmedArticles, GoogleScholar, Scopus, ScienceDirect, MainSienceDirect
+from retrieve_papers import PubmedArticles, GoogleScholar, Scopus, ScienceDirect
 
 def main():
     base_file = "data/search_result.csv"
@@ -20,7 +20,7 @@ def main():
     ris_file_path  = "/home/behrad/University/research/Systematic_Review_Alzheimers_Model/data/ScienceDirect_citations_1752324250808.ris"
     csv_file_path  = "/home/behrad/University/research/Systematic_Review_Alzheimers_Model/data/ScienceDirect.csv"
     
-    MainSienceDirect(ris_file=ris_file_path, base_file=base_file, csv_path=csv_file_path)
+    ScienceDirect(ris_file=ris_file_path, base_file=base_file, csv_path=csv_file_path)
 
     
 if __name__ == "__main__":

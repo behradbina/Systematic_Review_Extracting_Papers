@@ -221,8 +221,6 @@ class PubmedArticles:
         else:
             print("\nSuccessfully downloaded all papers!")
 
-
-        
 class GoogleScholar:
     base_file = ""
     output_file = ""
@@ -387,100 +385,16 @@ class Scopus:
         combined_df['Year'] = pd.to_datetime(combined_df['Year']).dt.year
         combined_df.to_csv(self.filname_csv_data, index=False)
 
-class ScienceDirect:
-    filname_json_data = r"data/siencedirect_results.json"
-    filname_csv_data = r"data/siencedirect_results.csv"
-    api_key = '75ecad9636d0bc96d40ed6a5518e7e44'
-    base_file =  ""
+class ScienceDirect():
+    # The only solution I found for getting data from science direct is to go to advanced search in sciencedirect.com 
+    # 1. Fill the search query
+    # 2. Choose citations
+    # 3. Export in ris format
+    # 4. Put the .ris file here
     
-    def __init__(self, query:str, base_file:str):
-        
-        self.base_file = base_file
-        articles = self.get_all_articles(query)
-        self.save_articles_to_csv(articles=articles)
-
-    def search_sciencedirect(self, query, start=0, count=25):
-        """
-        Searches ScienceDirect for articles matching the query.
-        
-        Parameters:
-            query (str): The search query.
-            api_key (str): Your Elsevier API key.
-            start (int): The starting index for the results.
-            count (int): The number of results to retrieve per request.
-        
-        Returns:
-            dict: The JSON response from the API.
-        """
-        
-        url = "https://api.elsevier.com/content/search/sciencedirect"
-        headers = {
-            "X-ELS-APIKey": self.api_key,
-            "Accept": "application/json"
-        }
-        params = {
-            "query": query,
-            "start": start,
-            "count": count
-        }
-        response = requests.get(url, headers=headers, params=params)
-        
-        if response.status_code != 200:
-            print("Error:", response.status_code, response.text)
-            return None
-        
-        return response.json()
-
-    def get_all_articles(self, query):
-        """
-        Retrieves all articles information from ScienceDirect that match the search query.
-        
-        Parameters:
-            query (str): The search query.
-            api_key (str): Your Elsevier API key.
-        
-        Returns:
-            list: A list of article entries.
-        """
-        articles = []
-        start = 0
-        count = 25  # page size; adjust if necessary
-
-        while True:
-            data = self.search_sciencedirect(query, start=start, count=count)
-            if data is None:
-                break
-            
-            entries = data.get('search-results', {}).get('entry', [])
-            if not entries:
-                break
-            
-            articles.extend(entries)
-            
-            # If fewer entries are returned than requested, assume it's the last page.
-            if len(entries) < count:
-                break
-            start += count
-
-        return articles
-
-    def save_articles_to_csv(self, articles):
-        fieldnames = ["Title", "DOI", "Publication"]
-        
-        with open(self.filname_csv_data, 'w', newline='', encoding='utf-8') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            for article in articles:
-                writer.writerow({
-                    "Title": article.get("dc:title", "N/A"),
-                    "DOI": article.get("prism:doi", "N/A"),
-                    "Publication": article.get("prism:publicationName", "N/A")
-                })
-                
-class MainSienceDirect():
     def __init__(self, ris_file:str, base_file:str, csv_path:str):      
-        self.base_file = base_file
         self.parse_ris_to_csv(ris_path=ris_file, csv_path=csv_path)
+        self.remove_duplicated_papers(base_file = base_file, csv_path = csv_path)
         
     def parse_ris_to_csv(self, ris_path, csv_path):
         entries = []
@@ -533,6 +447,7 @@ class MainSienceDirect():
                             current_entry["Abstract"] = " ".join(abstract_lines).strip()
                             abstract_lines = []
                         current_tag = None
+                
                 else:
                     # Line continuation
                     if current_tag == "AB":
@@ -549,4 +464,34 @@ class MainSienceDirect():
 
         print(f"✅ {len(entries)} entries written to {csv_path}")
 
+    def remove_prefix_doi(csv_path:str):
+        pass
+
+    def remove_duplicated_papers(self, base_file: str, csv_path: str):
+        # Load DOIs from base file (existing database)
+        existing_dois = set()
+        with open(base_file, newline='', encoding='utf-8') as f_base:
+            reader = csv.DictReader(f_base)
+            for row in reader:
+                doi = row.get("Doi", "").strip()
+                if doi:
+                    existing_dois.add(doi)
+
+        # Load new data from csv_path, skipping entries with duplicate DOIs
+        filtered_rows = []
+        with open(csv_path, newline='', encoding='utf-8') as f_new:
+            reader = csv.DictReader(f_new)
+            headers = reader.fieldnames
+            for row in reader:
+                doi = row.get("DOI", "").strip()
+                if doi and doi not in existing_dois:
+                    filtered_rows.append(row)
+
+        # Overwrite csv_path with filtered (non-duplicated) entries
+        with open(csv_path, "w", newline='', encoding='utf-8') as f_out:
+            writer = csv.DictWriter(f_out, fieldnames=headers)
+            writer.writeheader()
+            writer.writerows(filtered_rows)
+
+        print(f"✅ Removed duplicates. {len(filtered_rows)} unique papers remain in {csv_path}")
 
