@@ -394,6 +394,7 @@ class ScienceDirect():
     
     def __init__(self, ris_file:str, base_file:str, csv_path:str):      
         self.parse_ris_to_csv(ris_path=ris_file, csv_path=csv_path)
+        self.remove_prefix_doi(csv_path=csv_path)
         self.remove_duplicated_papers(base_file = base_file, csv_path = csv_path)
         
     def parse_ris_to_csv(self, ris_path, csv_path):
@@ -494,4 +495,27 @@ class ScienceDirect():
             writer.writerows(filtered_rows)
 
         print(f"✅ Removed duplicates. {len(filtered_rows)} unique papers remain in {csv_path}")
+
+
+    def remove_prefix_doi(self, csv_path: str):
+        updated_rows = []
+
+        # Read and process all rows
+        with open(csv_path, newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            headers = reader.fieldnames
+
+            for row in reader:
+                doi = row.get("DOI", "").strip()
+                if doi.startswith("https://doi.org/"):
+                    row["DOI"] = doi.replace("https://doi.org/", "")
+                updated_rows.append(row)
+
+        # Write the updated rows back to the same file
+        with open(csv_path, "w", newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=headers)
+            writer.writeheader()
+            writer.writerows(updated_rows)
+
+        print(f"✅ DOI prefixes removed and updated in {csv_path}")
 
