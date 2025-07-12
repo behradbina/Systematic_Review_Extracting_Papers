@@ -477,3 +477,54 @@ class ScienceDirect:
                     "Publication": article.get("prism:publicationName", "N/A")
                 })
                 
+class MainSienceDirect():
+    def __init__(self, ris_file:str, base_file:str, csv_path:str):
+        
+        self.base_file = base_file
+        self.parse_ris_to_csv(ris_path=ris_file, csv_path=csv_path)
+        
+
+    def parse_ris_to_csv(self, ris_path, csv_path):
+        entries = []
+        current_entry = {}
+
+        # Mapping RIS tags to human-readable CSV headers
+        tag_to_header = {
+            "T1": "Title",
+            "AB": "Abstract",
+            "JO": "Journal",
+            "DO": "DOI",
+            "DA": "Date",
+            "UR": "URL"
+        }
+
+        with open(ris_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if line.strip() == "":
+                    continue
+
+                if line.startswith("ER  -"):
+                    if current_entry:
+                        entries.append(current_entry)
+                        current_entry = {}
+                    continue
+
+                if "  - " in line:
+                    tag, value = line.split("  - ", 1)
+                    tag = tag.strip()
+                    value = value.strip()
+                    if tag in tag_to_header:
+                        current_entry[tag_to_header[tag]] = value
+
+        
+        headers = ["Title", "Abstract", "Journal", "DOI", "Date", "URL"]
+
+        with open(csv_path, "w", newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=headers)
+            writer.writeheader()
+            for entry in entries:
+                writer.writerow({h: entry.get(h, "") for h in headers})
+
+        print(f"✅ {len(entries)} entries written to {csv_path}")
+
+
