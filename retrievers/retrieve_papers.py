@@ -39,7 +39,6 @@ class PubmedArticles:
         handle.close()
         return records
 
-
     def save_to_csv(self, articles):
         with open(self.output_file_path, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
@@ -172,8 +171,6 @@ class PubmedArticles:
                     return True, "Elsevier"
         
         return False, "Not found"
-
-
 
     def retrieve_full_text(self):
         
@@ -326,7 +323,6 @@ class Scopus:
         self.save_in_csv()
         self.process_found_articles()
         
-                
     def extract_year(cover_date):
         if cover_date and isinstance(cover_date, str):
             return cover_date.split("-")[0]
@@ -367,7 +363,6 @@ class Scopus:
                 row = {field_mapping[field]: item.get(field, '') for field in json_fields}
                 writer.writerow(row)
 
-    
     def process_found_articles(self):
         search_df = pd.read_csv(self.base_file, usecols=['Doi', 'Title'])
         
@@ -385,7 +380,7 @@ class Scopus:
         combined_df['Year'] = pd.to_datetime(combined_df['Year']).dt.year
         combined_df.to_csv(self.filname_csv_data, index=False)
 
-class ScienceDirect():
+class ScienceDirect:
     # The only solution I found for getting data from science direct is to go to advanced search in sciencedirect.com 
     # 1. Fill the search query
     # 2. Choose citations
