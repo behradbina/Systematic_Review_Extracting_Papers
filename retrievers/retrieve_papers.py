@@ -388,6 +388,7 @@ class ScienceDirect:
     # 4. Put the .ris file here
     
     def __init__(self, ris_file:str, base_file:str, csv_path:str):      
+        #self.merge_csv_files("data/Scopus.csv", "data/Pubmed.csv", "all.csv")
         self.parse_ris_to_csv(ris_path=ris_file, csv_path=csv_path)
         self.remove_prefix_doi(csv_path=csv_path)
         self.remove_duplicated_papers(base_file = base_file, csv_path = csv_path)
@@ -469,7 +470,7 @@ class ScienceDirect:
         with open(base_file, newline='', encoding='utf-8') as f_base:
             reader = csv.DictReader(f_base)
             for row in reader:
-                doi = row.get("Doi", "").strip()
+                doi = row.get("DOI", "").strip()
                 if doi:
                     existing_dois.add(doi)
 
@@ -490,7 +491,6 @@ class ScienceDirect:
             writer.writerows(filtered_rows)
 
         print(f"✅ Removed duplicates. {len(filtered_rows)} unique papers remain in {csv_path}")
-
 
     def remove_prefix_doi(self, csv_path: str):
         updated_rows = []
@@ -513,4 +513,39 @@ class ScienceDirect:
             writer.writerows(updated_rows)
 
         print(f"✅ DOI prefixes removed and updated in {csv_path}")
+
+    def merge_csv_files(self, scopus_file, pubmed_file, output_file):
+        merged_rows = []
+
+        headers = ["Title", "Abstract", "Journal", "Year", "DOI"]
+
+        with open(scopus_file, newline='', encoding='utf-8') as scopus:
+            reader = csv.DictReader(scopus)
+            for row in reader:
+                merged_rows.append({
+                    "Title": row.get("Title", "").strip(),
+                    "Abstract": row.get("Abstract", "").strip(),
+                    "Journal": row.get("Journal", "").strip(),
+                    "Year": row.get("Year", "").strip(),
+                    "DOI": row.get("Doi", "").strip()
+                })
+
+        with open(pubmed_file, newline='', encoding='utf-8') as pubmed:
+            reader = csv.DictReader(pubmed)
+            for row in reader:
+                merged_rows.append({
+                    "Title": row.get("Title", "").strip(),
+                    "Abstract": row.get("Abstract", "").strip(),
+                    "Journal": row.get("Journal/Book", "").strip(),
+                    "Year": row.get("Publication Year", "").strip(),
+                    "DOI": row.get("DOI", "").strip()
+                })
+
+        # Write merged output
+        with open(output_file, "w", newline='', encoding='utf-8') as out:
+            writer = csv.DictWriter(out, fieldnames=headers)
+            writer.writeheader()
+            writer.writerows(merged_rows)
+
+        print(f"✅ Merged {len(merged_rows)} records into {output_file}")
 

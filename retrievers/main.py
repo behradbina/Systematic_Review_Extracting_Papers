@@ -15,7 +15,7 @@ def main():
     
     ris_file_path  = "data/ScienceDirect_citations_1752566512684.ris"
     csv_file_path  = "data/ScienceDirect.csv"
-    
+    base_file = "all.csv"
     ScienceDirect(ris_file=ris_file_path, base_file=base_file, csv_path=csv_file_path)
 
     
