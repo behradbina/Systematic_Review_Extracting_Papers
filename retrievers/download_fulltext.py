@@ -139,8 +139,6 @@ def process_paper(row):
         print(f"❌ No accessible PDF found for {identifier}")
         return (pmid, doi, "Not found", "")
 
-
-
 def main():
     setup_dirs()
     df = pd.read_excel(CSV_PATH)
@@ -160,7 +158,6 @@ def main():
     report.to_csv(report_path, index=False)
     print(f"\nDownload complete! Report saved to {report_path}")
     print(f"Summary:\n{report['source'].value_counts()}")
-
 
 if __name__ == "__main__":
     main()
