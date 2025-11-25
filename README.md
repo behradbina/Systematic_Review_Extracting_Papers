@@ -95,8 +95,8 @@ Can be adapted for any systematic review topic.
 
 ```
 Systematic_Review_Extracting_Papers/
-│── data/
-│── scripts/
+│── meta_analysis/
+│── retrievers/
 │   ├── main.py
 │── README.md
 
