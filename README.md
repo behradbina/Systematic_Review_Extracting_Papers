@@ -91,7 +91,7 @@ Additional optional packages depending on your system: pandas, numpy, selenium, 
 Can be adapted for any systematic review topic.
 
 
-## 📁 **Project Structure** (suggested)
+## 📁 **Project Structure**
 
 ```
 Systematic_Review_Extracting_Papers/
